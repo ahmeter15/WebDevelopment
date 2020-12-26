@@ -1,0 +1,20 @@
+28 Ekim 2020 - Çarşamba
+
+-------------------------------DERS NOTLARI--------------------------------
+display: flex;       --> Bu özellikler yardımıyla, elementlerimizi dinamik 
+flex-wrap: wrap;		 bir şekilde listeyebiliriz. Otomatik genişlik ve
+						 yükseklik değerini, kendisi kazanabilir.
+
+font-weight: bold;   --> yazıyı kalın harflerle yazar..
+font-weight: normal; --> kalın harflerle yazılmış yazıyı, normal hale dönderir..
+
+.kutu           ---> class değeri "kutu" olan element
+.kutu.kirmizi   ---> class değeri hem "kutu" hem "kirmizi" olan element
+	<div class="kutu kirmizi">Selam</div>
+
+.kutu .kirmizi   ---> dıştaki elementin class'ı "kutu", "kutu" elementinin içinde class değeri "kirmizi" olan başka bir element var. onu bul.
+	<div class="kutu">
+		<div class="kirmizi">
+			Selam
+		</div>
+	</div>

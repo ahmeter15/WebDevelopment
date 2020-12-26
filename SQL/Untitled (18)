@@ -1,0 +1,230 @@
+-- ORDER BY 
+-- Eğer yanına bir şey yazılmadan kullanılırsa ASC ( artarak) sıralama yapar.
+-- Azalan sıralama yapmak istersek ORDER BY dan sonra DESC
+-- ORDER BY field isimiyle kulluanılır ve field içinde sıralama yapar
+-- FETCH NEXT ONE ROW --- 
+
+CREATE TABLE insanlar 
+(
+ssn char(9),
+isim varchar2(50), 
+soyisim varchar2(50), 
+adres varchar2(50),
+maas number (8)
+);
+
+INSERT INTO insanlar VALUES(123456789, 'Ali','Can', 'Istanbul',5000);
+INSERT INTO insanlar VALUES(234567890, 'Veli','Cem', 'Ankara',7000);
+INSERT INTO insanlar VALUES(345678901, 'Mine','Bulut', 'Ankara',3000);
+INSERT INTO insanlar VALUES(256789012, 'Mahmut','Bulut', 'Istanbul',4000);
+INSERT INTO insanlar VALUES (344678901, 'Mine','Yasa', 'Ankara',6000);
+INSERT INTO insanlar VALUES (345678901, 'Veli','Yilmaz', 'Istanbul',9000);
+
+-- ORDER BY 
+SELECT *
+FROM insanlar
+ORDER BY ssn ASC ;
+
+-- ismi Mine olan recordları maaşa göre sıralayalım
+
+SELECT *
+FROM insanlar
+WHERE isim = 'Mine'
+ORDER BY maas;
+
+-- En yüksek maaş alan kişinin sorgusu
+
+SELECT *
+FROM insanlar
+ORDER BY maas DESC
+FETCH NEXT 2 ROW ONLY ;
+
+-- Order by dan sonra field ismi kullanıldığı gibi row numarası da kullanılabilir.
+
+-- Adres field ını artan sıraya göre sıralayalım
+
+
+SELECT*
+FROM insanlar
+ORDER BY 5 ASC;
+
+-- soy ismi Bulut olanların maaşlarını row numarası kullanarak sıralayın.
+
+SELECT *
+FROM insanlar
+WHERE soyisim = 'Bulut'
+ORDER BY 5 ASC;
+
+-- Field ismi ve nosu ile çağırabilirm.
+
+-- ALIASES fieldarı isimlendirmeye yarar .
+-- AS ile birlikte kullanılır.
+
+SELECT ssn AS kisi_id, isim AS kisi_ismi, maas AS kisi_maas, adres AS kisi_adres
+FROM insanlar;
+
+-- i.kisi_ismi 
+
+-- İki field ı birleştirmek için 
+
+SELECT  ssn AS kisi_id, isim || adres AS isim_adres
+FROM insanlar;
+
+-- kisinin ismi ve id 'sini tek bir field ta gösterin.
+
+SELECT ssn|| isim AS id_isim, adres AS kisi_adres
+FROM insanlar;
+
+SELECT isim
+FROM insanlar;
+
+-- GROUP BY 
+
+CREATE TABLE manav 
+(
+isim varchar2(50), 
+urun_adi varchar2(50), 
+urun_miktar number(9) 
+);
+
+INSERT INTO manav VALUES( 'Ali', 'Elma', 5);
+INSERT INTO manav VALUES( 'Ayse', 'Armut', 3);
+INSERT INTO manav VALUES( 'Veli', 'Elma', 2);
+INSERT INTO manav VALUES( 'Hasan', 'Uzum', 4);
+INSERT INTO manav VALUES( 'Ali', 'Armut', 2);
+INSERT INTO manav VALUES( 'Ayse', 'Elma', 3);
+INSERT INTO manav VALUES( 'Veli', 'Uzum', 5);
+INSERT INTO manav VALUES( 'Ali', 'Armut', 2);
+INSERT INTO manav VALUES( 'Veli', 'Elma', 3);
+INSERT INTO manav VALUES( 'Ayse', 'Uzum', 2);
+
+-- Group By komutu sonuçları bir veya daha fazla sütuna göre gruplamak için select komutuyla çalışır.
+
+-- İsme göre alınan tüm ürünlerin toplamını  bulun
+
+SELECT isim, SUM (urun_miktar) AS toplam_urun
+FROM manav
+GROUP BY isim ;
+
+-- Urun ismine gore urunu alan toplam kisi sayisi
+
+SELECT urun_adi, COUNT (isim) AS kisi_sayisi
+FROM manav
+GROUP BY urun_adi
+ORDER BY urun_adi;
+
+-- Alinan kilo miktarina gore musteri sayisi-- Urun miktarını azalan sıralamaya göre sıralayın
+
+SELECT urun_miktar, COUNT (isim) AS musteri_sayisi
+FROM manav
+GROUP BY urun_miktar
+ORDER BY 1 DESC;
+
+CREATE TABLE personel 
+(
+id number(9), 
+isim varchar2(50), 
+sehir varchar2(50), 
+maas number(20), 
+sirket varchar2(20)
+);
+
+INSERT INTO personel VALUES(123456789, 'Ali Yilmaz', 'Istanbul', 5500, 'Honda');
+INSERT INTO personel VALUES(234567890, 'Veli Sahin', 'Istanbul', 4500, 'Toyota');
+INSERT INTO personel VALUES(345678901, 'Mehmet Ozturk', 'Ankara', 3500, 'Honda'); 
+INSERT INTO personel VALUES(456789012, 'Mehmet Ozturk', 'Izmir', 6000, 'Ford');
+INSERT INTO personel VALUES(567890123, 'Mehmet Ozturk', 'Ankara', 7000, 'Tofas');
+INSERT INTO personel VALUES(456789012, 'Veli Sahin', 'Ankara', 4500, 'Ford');
+INSERT INTO personel VALUES(123456710, 'Hatice Sahin', 'Bursa', 4500, 'Honda');
+
+SELECT *
+FROM personel;
+
+SELECT isim,sehir -- Aggregate Fun. sum,count gibi gruplandırmam gerek
+FROM personel;
+
+SELECT isim, SUM (maas)
+FROM personel
+GROUP BY isim;
+
+SELECT isim, id
+FROM personel;
+
+--  sehre gore toplam personel sayisini bulun
+
+SELECT sehir, COUNT (isim)
+FROM personel
+GROUP BY sehir
+ORDER BY sehir ;
+
+--Sirketlere gore maasi 5000 liradan fazla olan personel sayisini bulun
+
+SELECT sirket, COUNT (*) AS calisan_sayisi
+FROM personel
+WHERE maas >5000
+GROUP BY sirket;
+
+--Her sirket icin Min ve Max maasi bulun
+
+SELECT sirket, MAX (maas) AS max_maas, MIN (maas)AS min_maas
+FROM personel
+GROUP BY sirket;
+
+-- HAVING CLAUSE 
+-- WHERE gibi filtreleme yapmak için kullanılır.
+-- WHERE den tek bir farkı var, Where koşulu AGGREGATE fonk. ile birlikte kullanılmaz fakat having aggregate fonk. ile kullanılabilir.
+
+-- Her sirketin MIN  maaslarini eger 2000’den buyukse goster
+
+SELECT sirket, MIN (maas)
+FROM personel
+GROUP BY sirket
+HAVING MIN (maas) >5000;
+
+SELECT *
+FROM personel;
+
+-- Where ile aggreagate fonk. kullanılamaz. -- Interview Sorusu
+
+--) Toplam geliri 10000 liradan fazla olan isimleri gosteren sorgu yaziniz
+SELECT isim, SUM (maas)
+FROM personel
+GROUP BY isim
+HAVING SUM (maas) >10000;
+
+--) Eger bir sehirde calisan personel sayisi 1’den coksa sehir ismini ve personel sayisini veren sorgu yaziniz
+
+-- SQL BOLT 
+-- SQL TEACHING  
+
+SELECT sehir, COUNT (isim ) AS toplam_personel
+FROM personel
+GROUP BY sehir
+HAVING COUNT (isim ) >1 ;
+
+--Eger bir sehirde alinan MAX maas 5000’den dusukse sehir ismini ve MAX maasi veren sorgu yaziniz
+
+SELECT sehir, MAX (maas) AS max_maas
+FROM personel
+GROUP BY sehir
+HAVING MAX (maas ) <5000 ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

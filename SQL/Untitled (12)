@@ -1,0 +1,67 @@
+CREATE TABLE personel
+(
+id char (5),
+isim varchar2(50)NOT NULL,
+soyisim varchar2 (50),
+email varchar2 (50),
+ise_baslama_tarihi date,
+maas number (6),
+CONSTRAINT personel_pk PRIMARY KEY (id)
+);
+
+-- Tabloya bütün verilerin olduğu 3 record
+-- Sadece id isim ve soy isim olan 2 record
+-- Sadece isim, id ve maas olan 2 record
+-- Sadece isim, id olan 1 record
+
+-- date ler icin '04-Nov-20'
+
+-- INSERT INTO personel (id,isim,soyisim) VALUES (123456789,'Bahadır', 'Hakan');
+
+INSERT INTO personel VALUES (12345,'Murat','Yaman','muratymn@gmail.com','23-Nov-15',5000);
+INSERT INTO personel VALUES (12346,'Ahmet','Gunes','agunes@gmail.com','10-Nov-15',6000);
+INSERT INTO personel VALUES (12347,'Ali','Han','muratymn@gmail.com','15-Nov-15',4000);
+
+SELECT *
+FROM personel;
+
+
+INSERT INTO personel (id,isim,soyisim) VALUES (23456,'Elif','Sari');
+INSERT INTO personel (id,isim,soyisim) VALUES (45688, 'Ahmet','Yigit');
+INSERT INTO personel (id,isim,maas) VALUES (34562,'Elif',7000);
+INSERT INTO personel (id,isim,maas) VALUES (56884,'Ahmet',2500);
+INSERT INTO personel (id,isim) VALUES (45674,'Tulin');
+
+SELECT *
+FROM personel;
+
+--ogretmenler” isminde bir SQL tablosu olusturun. Icinde “kimlik_no”, “isim”, “brans” ve “cinsiyet” field’lari olsun. 
+--“ogretmenler” tablosuna bilgileri asagidaki gibi olan bir kisi ekleyin.
+--Kimlik_no: 234431223, isim: Ayse Guler, brans : Matematik, cinsiyet: kadin.
+--“ogretmenler” tablosuna bilgileri asagidaki gibi olan bir kisi ekleyin.
+--Kimlik_no: 567597624, isim: Kemal Yasa
+
+CREATE TABLE ogretmenler
+(
+kimlik_no char (9),
+isim varchar2 (50),
+brans varchar2 (30),
+cinsiyet varchar2 (10),
+CONSTRAINT ogr_pk PRIMARY KEY (kimlik_no)
+);
+
+INSERT INTO ogretmenler VALUES ('234431223','Ayse Guler','Matematik','Kadin');
+INSERT INTO ogretmenler (kimlik_no, isim) VALUES ('567597624','Kemal Yasa');
+
+SELECT *
+FROM ogretmenler;
+
+
+
+
+
+
+
+
+
+

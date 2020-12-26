@@ -1,0 +1,29 @@
+22 Ekim 2020 - Perşembe
+Son Ders Tekrar:
+----------------
+ctrl + boşluk tuşu : Atom HTML Editorunde önerileri gösterir.
+icon : <link rel="icon" href="ikon adresi" >
+		png, jpg, jpeg, gif bu formatları da destekliyordu.
+		.ico uzantılı dosyaları tercih ediyoruz.
+		favicon
+border : elementimiz etrafına kenarlık oluşturmak için kullanıyoruz.
+		 dashed  : kesik çizgi için
+		 solid   : düz çizgi için		
+		 border : 2px solid; 	   -> 2px genişliğinde siyah düz çizgi
+		 border : 2px solid red;   -> 2px genişliğinde kırmızı düz çizgi
+		 border : 3px dashed;      -> 3px genişliğinde siyah kesik çizgi
+		 border : 5px dashed blue; -> 5px genişliğinde mavi kesik çizgi
+		 ***** red, blue bölümlerine İSTEDİĞİMİZ RENK KODUNU yazabiliriz.
+		 #ff00ff, blue, rgb(255, 240, 200)
+		 border-left : 5px solid red; sadece sol tarafa kenarlık ekler
+		 border-right: 7px dashed blue; sadece sağ tarafa kenarlık ekle
+border-radius : elementimiz kenarlarını yuvarlamak için kullanıyoruz.
+		***** SolÜst'ten başlar, saat yönünde ilerler.
+		border-radius: 20px; SolÜst SağÜst SağAlt SolAlt 20px yuvarlanır.
+		border-radius: 30px 40px 20px 0;
+		border-radius: 50%;   -> bir elementi yuvarlak hale getiririz, element kare olmak şartıyla..
+---------------------------------DERS NOTLARI----------------------------
+text-decoration : none;			---> herhangi bir çizgi kalmaz
+text-decoration : underline;    ---> yazının altına çizer
+font-family : sans-serif;       ---> yazının tipini(stili) belirler
+text-align : right; 			---> yazıyı, içinde bulunduğu elementin 									 sağına alıyor.	(right, left, center)

@@ -1,0 +1,26 @@
+30 Kasım 2020 - Pazartesi
+-------------------------
+---> document -> html -> tüm elementlerimiz..
+document  : sayfadaki herşeyin içinde bulunduğu element.
+firstElementChild : ilk çocuk getirilir.
+lastElementChild : son çocuk getirilir.
+children : elementin, çocuklarını array şeklinde bize getirir.(dizi)
+document.getElementsByTagName("tag ismi");     : tag ismi ile element bulma   | ARRAY
+document.getElementsByClassName("class ismi"); : class ismi ile element bulma | ARRAY
+document.getElementById("id name"); 		   : id ile element bulma		  | ELEMENT
+document.querySelector(""); // tek element     : tagIsmi, class, id vs ile element blma
+document.querySelectorAll("") //tüm elementler : tagIsmi, class, id vs ile element blma
+***** script dosyaları eğer yukarıya yazılırsa, document.getElementsByTagName gibi ifadelerle HTML element arama işlemi başarısız olabilir. Çünkü aradığımız element henüz yüklenmemiş olabilir. Bu yüzden, script kodlarının sayfa yüklenmeden önce çalıştırılması istenenler YUKARIYA, sayfa yüklendikten sonra çalıştırılması istenilenler AŞAĞIYA yazılır.
+***** eğer script dosyaları aşağıya yazılırsa, sayfanın açılması hızında birazcık hızlanma görülebilir.
+var elementIsmi = document.geteleme...
+***** javaScript'te bulduğumuz elementleri uzun şekliyle (document.getElementsByTagName vs..) gibi değil, onu bir değişkene atayarak kullanacağız.
+document.getElementsByTagName("h1")[0].style.color = "red";
+document.getElementsByTagName("h1")[0].style.fontSize = "3rem";
+----------
+var elementIsmi = document.getElementsByTagName("h1")[0];
+elementIsmi.style.color = "red";
+elementIsmi.style.fontSize = "3rem";
+---------------------------------------------------------------------------------------
+Yarın görülecek..
+document.querySelector(""); // tek element     : tagIsmi, class, id vs ile element blma
+document.querySelectorAll("") //tüm elementler : tagIsmi, class, id vs ile element blma

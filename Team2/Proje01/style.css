@@ -1,0 +1,24 @@
+body {
+  background-color: #FAD961;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.bolum1 {
+  background-color: grey;
+}
+
+.bolum2 {
+  background-color: blue;
+}
+.bolum3 {
+  background-color: grey;
+}
+
+.bolum1, .bolum2, .bolum3 {
+display: inline-block;
+padding: 10px 10px;
+
+
+}

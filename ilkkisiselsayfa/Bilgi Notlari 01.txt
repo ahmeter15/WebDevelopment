@@ -1,0 +1,79 @@
+10 Ekim 2020 - Cumartesi
+
+Bir websitesine bağlanırken arkaplanda hangi işlemler gerçekleşiyor ?
+
+---- HTML SAYFASI
+
+***** Tüm html elementlerinde "<" ve ">" işaretleri kullanılır.
+
+Bir HTML sayfasının içerisinde ilk önce <html> tag'ı oluşturulur. Ve oluşturulan bu tag şu şekilde kapatılır : </html>
+
+HTML sayfasının içerisinde iki bölüm vardır : <head> ve <body>
+
+<html>  : html tagı açılır
+
+	<head>  : head tagı açılır
+		***** Websayfasıyla alakalı bilgilerin ve body bölümünden önce çalıştırılması gereken kodların bulunduğu bölümdür.
+		örnek : sayfanın başlığı, sayfanın açıklaması, tasarım kodları, javaScript kodları
+	</head> : head tagı kapatılır
+
+	<body>  : body tagı açılır
+		***** Yazdığımız kodların sitenin ziyaretçilerine göründüğü bölüm burasıdır.
+		html elementleri oluşturup ekleyebiliriz. mesela bir resim ya da bir link ya da bir makale
+	</body> : body tagı kapatılır
+
+</html> : html tagı kapatılır.
+
+<a href="/international-sales-offers/" class="nav-a" tabindex="0">Today's Deals</a>
+
+tag ismi      : a
+attributeler  : href   ,  class   ,  tabindex
+
+<h1 title="Merhaba Dünya !" class="baslik">Selamlar</h1>
+<h1 title="dsadsa" >Selamlar</h1>
+
+tag ismi      : h1
+attributeler  : title  , class
+
+---------------------------İLK KİŞİSEL SAYFA-------------------------------
+
+HTML kodlarının yazıldığı ve çalıştırıldığı sayfanın uzantısı .html olur.
+
+<html>    : websayfasının içerisindeki tüm alanları kapsayan tag.
+<head>    : sayfa ile ilgili bilgilerin ve öncesinde çalışmasını istediğimiz kodların eklendiği bölüm.
+<body>    : sayfadaki elementlerin bulunduğu, yani tasarıma ait tüm kodların bulunduğu bölüm.
+<h1>..<h6>: sayfaya bu tagların içerisinde büyük ve kalın yazılar eklyblrz
+<title>   : bir websayfasına başlık eklemek için kullanılır.
+<i>       : bir yazının eğik hale gelmesini sağlar.
+<em>      : bir yazının eğik hale gelmesini sağlar.(daha yeni, önerilir)
+<b>       : bir yazının kalın hale gelmesini sağlıyor.
+<strong>  : bir yazının kalın hale gelmesini sağlıyor.(daha yeni, önerilir)
+<br>      : kapatılması ZORUNLU DEĞİLDİR. 1 satır boşluk bırakır.
+<hr>	  : kapatılması ZORUNLU DEĞİLDİR. Yatay bir çizgi oluşturur.
+<p>       : yazılan yazının yeni bir paragraf olarak algılanmasını sağlar.
+<ul>      : unordered list(sıralı olmayan liste), nokta şeklinde liste..
+<li>      : list item(listedeki her elemanı bu tag içerisine ekleriz.)
+<ol>      : ordered list(sıralı liste), 1. , 2. , 3. gibi sayılar verir.
+<u>       : underline (bir yazının altını çizmek için kullanılır)
+<a>       : yazıya link vermek için kullanıyoruz. (href attribute'u ile..)
+			***** href olmak zorunda !!!!!
+<img>     : resim eklemek için kullanıyoruz.(src attribute'u ile..)
+			***** src olmak zorunda  !!!!!			
+			***** img elementini kapatmak(</img>) zorunda değiliz.
+			width : resmin genişlik değerini belirlemek için kullanılır
+			height : resmin yükseklik değerini belirlemek için kullanılır
+
+-----------------------------Gün sonu tekrarı------------------------------
+
+* HTML tagı, web sayfasının olmazsa olmaz en geniş tagı'dır. Tüm elementler bu tag'ın içerisinde yer alır.
+* HEAD ve BODY tagları HTML tag'ının içerisinde 2 tane ana(main) tag'dır.
+* BODY tasarım bölümü.
+* HEAD sayfa bilgilerinin bulunduğu bölüm.
+* H1, H2, H3, H4, H5, H6 tagları mevcuttur.
+* Link verme işlemi "<a" tagı ile olur.
+* Liste yapmak için "<ul" ya da "<ol" kullanılabilir("<li>" ile birlikte)
+* Resim eklemek için "<img>" tagını kullanırız("src" ile birlikte)
+* Bazı tagları kapatmak zorunda değilizdir.Örnek : img, hr, br
+* p tagı ile paragraf oluşturabiliyoruz.
+* Yazıyı eğik hale getirmek için "em" ya da "i" kullanabiliyoruz.
+* Yazıyı kalın hale getirmek için "strong" ya da "b" kullanabiliyoruz.

@@ -1,0 +1,93 @@
+.arkaplan-mavi {
+  background-color: #073b4c;
+}
+
+.navbar-brand {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.collapse {
+  padding-right: 5%;
+  justify-content: end;
+}
+.slogan{
+  font-family: 'ubuntu';
+  line-height: 1.5;
+}
+
+.
+.navbar-brand {
+  font-size: 2rem;
+  font-weight: bold;
+}
+.ust-alt-45px-bosluk{
+  padding: 40px 0;
+}
+.ikonlar {
+  color: #ffd166;
+  padding: 10px;
+}
+.reklam-margin {
+  margin: 3% 5%;
+}
+.resim-takvim{
+  transform: rotate(20deg);
+  width: 210px;
+}
+
+  .ortalama{
+    display: flex;
+    justify-content: center;
+
+}
+
+.r-l-fluid-padding {
+  padding: 3% 12%;
+}
+.yorum {
+  padding: 3% 10%;
+
+}
+.yorum p {
+  font-size: 1.3rem;
+}
+.yorum img {
+  width: 80px;
+}
+
+.margin-top-15{
+  margin-top: 15px;
+}
+.social-icon {
+  font-size: 1.5rem;
+  padding-right: 15px;
+  color: grey;
+}
+.social-icon:hover {
+  color: white;
+  transition: all 0.2s;
+}
+@media (max-width:576px) {
+  .resim-takvim{
+    transform: rotate(0deg);
+    width: 250px;
+  }
+  .slogan{
+  line-height: 1.4;
+  font-size: 1.5rem;
+  }
+  .ust-alt-45px-bosluk{
+    padding: 3px 0;
+    margin: 0;
+}
+}
+
+@media (min-width:992px) {
+
+}
+@media (max-width:991px) {
+  .r-l-fluid-padding {
+    padding: 3% 3%;
+  }
+}

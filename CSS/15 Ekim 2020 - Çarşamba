@@ -1,0 +1,61 @@
+15 Ekim 2020 - Çarşamba
+
+Son Ders Tekrar:
+----------------
+
+<table>  : tablo oluşturmak için kullanılıyor.
+	border="1" -> tablonun çizgilerini oluşturuyor.
+<thead>  : tablodaki sütunların başlıklarının yer aldığı bölüm.
+<tbody>  : tablodaki satırların yer aldığı bölüm.
+<tr>     : tablodaki satırları içeren html tag.
+<td>     : tablodaki satırların içerisindeki verileri içeren hücre.(tag)
+	width="70" -> hücrenin genişliği için kullanılır.
+	bgcolor="green" -> hücrenin arkaplan rengini belirler.
+	align="left,right, center" -> yazının pozisyonu belirliyor.
+<th>     : tablonun sütun başlıklarını içeren tag.
+	<table>
+		<thead>
+			<tr>
+				<th>Dil</th>
+				<th>Yıl</th>
+				<th>Seviye</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr>
+				<td>JAVA</td>	
+				<td>2020</td>
+				<td>iyi</td>
+			</tr>
+			<tr>
+				<td>PHP</td>
+				<td>2020</td>
+				<td>orta</td>
+			</tr>
+		</tbody>
+	</table>
+
+--------------------------------DERS NOTLARI-------------------------------
+
+* web sayasında görünülecek her yazıyı açılış ve kapanış taglarının arasına. yazının(ya da herhangi bir tag'ın) sahip olduğu özellikleri(attribute) de açılış tagının içine yazıyoruz.
+	örnek : <a title="Google" class="link" href="http://google.com">Google</a>
+	tag ismi : a
+	attribute : href, title, class
+	içerdiği yazı : Google
+
+<form>   : "post" ya da "get" methodu yardımıyla veri göndermek için kullanılır.
+	attribute'ler : action , method
+	örnek : Biz google.com'da arama işlemi yaparken, yazdığımız kelime "Araba" olsun. Arama kutusuna "Araba" yazıp enter'a tıkladığımızda yaptığımız işlem şudur : form elementi yardımıyla "Araba" kelimesi gönderilir.
+
+<input type="text">     : Herhangi bir yazı yazabileceğimiz kutu.
+<input type="submit">   : Form içerisinde yazılan verileri göndermek için kullanılır.("action" attribute'nun içindeki sayfaya gönderir)
+<input type="radio">    : Birden fazla seçenek arasından 1 tane seçim yapmak için kullanılır.
+<input type="color">    : renk seçimi yapmak için kullanılır.
+<input type="date">     : tarih seçimi yapmak için kullanılır.
+<input type="password"> : şifre girmek için kullanılır.
+
+<textarea> : yazı yazma alanı olarak tanımlanabilir. bu kutunun içerisine aynı <input type="text"> te olduğu gibi yazı yazabiliriz.
+	rows="8"  		-> 8 birim yüksekliğinde
+	cols="30" 		-> 30 birim genişliğinde
+	maxlength="140" -> maks 140 karaktere kadar izin verir.

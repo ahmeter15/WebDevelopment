@@ -1,0 +1,22 @@
+16 Ekim 2020 - Çarşamba
+
+DOĞRU : http://google.com
+DOĞRU : https://google.com
+DOĞRU : http://www.google.com
+DOĞRU : https://www.google.com
+YANLIŞ: www.google.com
+YANLIŞ: google.com
+
+strong ya da b : yazıyı kalın hale getirmek için.
+
+------------------------------DERS NOTLARI---------------------------------
+***** Web sayfasında kullanmış olduğumuz tüm html elementlerin özellikleri arkaplanda CSS yardımıyla hazırlanmıştır !!!!!
+
+***** elementinKendisi > elementinBabası > elementinDedesi
+***** styleAttribute   > cssDosyası      > defaultDegerler
+
+background-color : arkaplan rengini belirler.
+color : yazının rengini değiştirmek için kullanıyoruz.
+font-size: bir yazının büyüklüğünü belirlemek için kullanılır.
+
+

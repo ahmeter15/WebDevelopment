@@ -1,0 +1,20 @@
+
+
+.kutu {
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+
+}
+
+.kutu01 {
+  background-image: linear-gradient(rgba(225,225,225,1) , rgba(225,225,225,0.2)),
+  url(img/2.jpg);
+}
+
+.kutu02 {
+  background-image: url(img/2.jpg);
+}
+.kutu03 {
+  background-image: url(img/2.jpg);
+}

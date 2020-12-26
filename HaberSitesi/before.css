@@ -1,0 +1,23 @@
+.container {
+    width: 350px !important;
+    border-top: solid 1px #444;
+    margin: 40px 20px;
+    padding: 10px 0;
+}
+.container::before {
+    content: "REKLAM";
+    position: absolute;
+    top: 27px;
+    left: 160px;
+    background-color: #fff;
+    padding: 0 10px;
+}
+.yazi {
+    color: orange;
+}
+.yazi::after{
+    content: " HAMZA, Nasılsın ?";
+}
+.yazi::before{
+    content: "26 Kasım - ";
+}

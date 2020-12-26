@@ -1,0 +1,174 @@
+--  Sıfırdan Tablo olusturma 
+--  Varolan bir tablodan tablo olusturma
+
+CREATE TABLE ogrenciler 
+(
+id char (9),
+isim varchar2(50),
+adres varchar2 (50),
+ogrenci_not number (5),
+son_guncelleme_tarihi date
+);
+
+-- Varolan tablodan tablo olusturma
+
+CREATE TABLE ogrenci_bilgileri
+AS SELECT isim,adres
+FROM ogrenciler;
+
+-- Tedarikciler isminde bir tablo oluşturalım . "tedarikci_id", "tedarikci_isim" "tedarikci_adres", "ulasim tarihi"
+
+CREATE TABLE tedarikciler
+(
+tedarikci_id char (9),
+tedarikci_isim varchar2 (50),
+tedarikci_adres varchar2(50),
+ulasim_tarihi date 
+);
+
+-- tedarikciler isimli tablodan tedarikci_id_isim adinda bir tablo oluşturun ve fieldlar "tedaricki_id" ve "tedarikci_isim" olsun
+
+CREATE TABLE tedarikci_id_isim 
+AS SELECT tedarikci_id, tedarikci_isim
+FROM tedarikciler;
+
+-- Bir field ın tekrarsız olması nasıl sağlanır
+-- Unique  -- Tek ve benzersiz tekrarsız 
+-- Id field ını tekrarsız yapmak için 
+-- id char (9) UNIQUE ,
+
+
+CREATE TABLE students_table 
+(
+id char (9) UNIQUE,
+isim varchar2(50),
+adres varchar2 (50),
+son_kayit_tarihi date
+);
+
+-- Bir field ın NOT NULL olmasını istiyorsam-- Boş değer almasını istemiyorsam
+-- ogrenciler isimli bir tablo oluşturun, id UNIQUE isim NOT NULL olsun adres, son_guncelleme_tarihi .
+
+CREATE TABLE ogrenciler1
+(
+id char(9) UNIQUE,
+isim varchar2 (50) NOT NULL,
+adres varchar2 (50),
+son_guncelleme_tarihi date
+);
+
+-- Br tabloya primary key nasıl eklenir. 
+-- Primary key bir recordu tanımlayan bir veya birden fazla field ın birleşimidir.
+-- Primary Key Unique Dir-- Benzersiz ve tek.
+-- Her tabloda olmak zorunda değildir ama her tabloda en fazla bir tane olabilir. 
+-- primary key field ında null değer olamaz.
+-- Primary key tekrarlı değer kabul etmez...
+
+-- id fieldını primary key yapmanın 2 yolu vardır.
+
+--1) Data type'dan sonra    PRIMARY KEY yazarak .
+
+CREATE TABLE ogrenciler_tablosu
+(
+id char(9) PRIMARY KEY,
+-- constraint kısıtlama -- primary key, unique, not null
+isim varchar2(50),
+adres varchar2(50) NOT NULL
+);
+
+--2 ) 2.YOL Keyword kullanarak PK tanımlanabilir.
+-- Kısıtlamalar-- CONSTRAINTS 
+
+-- CONSTRAINT id_pk PRIMARY KEY (id),
+
+
+CREATE TABLE ogrenciler2
+(
+id char(9),
+isim varchar2(50),
+CONSTRAINT id_pk PRIMARY KEY (id)
+);
+
+
+-- Sehirler isimli bir tablo olusturun. "alan-kodu", "isim", "nüfus" fieldları olsun ve alan_kodu primary key.
+
+CREATE TABLE sehirler
+(
+alan_kodu char(3),
+isim varchar2 (50) NOT NULL,
+nufus number (8),
+CONSTRAINT alan_pk PRIMARY KEY (alan_kodu) 
+);
+
+-- Ogretmenler isimli bir tablo olusturun. "id" "isim" "brans" "cinsiyet" fieldları olsun. id ve isim 
+-- fieldlarının birlesimi de primary key olsun.
+
+CREATE TABLE ogretmenler
+(
+id char(7),
+isim varchar2 (50),
+brans varchar2(30),
+cinsiyet varchar2 (10),
+CONSTRAINT ogr_pk PRIMARY KEY (id,isim)
+);
+
+-- Tabloya Foreign Key ekleme 
+
+-- Foreign Key iki tablo arasında ilişki kurmaya yarar .
+-- Bir tablodaki foreign key başka bir tablodaki primary key dir. 
+-- Referenced yani referans alınan tablo parent table , foreign key in olduğu tablo child table dor.
+-- Foreign key NULL değer kabul eder. 
+-- Bir kereye mahsus Null değer kabul eden Unique key dir. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

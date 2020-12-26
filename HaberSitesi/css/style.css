@@ -1,0 +1,58 @@
+
+:root {
+  --ana-renk: orange;
+  --baslik-boyut: 2.8rem;
+}
+
+body {
+
+  background-image:linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+  url("https://resimdiyari.com/_data/i/upload/2012/08/14/20120814095755-f4185f57-me.jpg");
+  background-size: 100%;
+
+}
+
+.navbar-brand {
+  color: red !important;
+  font-weight: bold;
+  font-size: 1.8rem;
+
+}
+.shadow {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08) !important;
+}
+
+
+
+.bg-red {
+  background-color: red;
+  color: white;
+}
+
+.bg-white {
+  background-color: white;
+}
+.economi{
+  border-left: 8px solid red;
+  font-size: 1.2rem;
+  margin-left: 0;
+  margin-right: 0;
+
+}
+
+.slayt {
+  width: 100%;
+  margin:0;
+  padding: 0;
+
+}
+
+.card {
+  border: none;
+}
+
+.radius {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+
+}

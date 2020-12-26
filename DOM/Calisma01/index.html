@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <title>Dört İşlem</title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/dortislem.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+</head>
+<body>
+
+<h1 class="text-center">Zar Atma Oynu</h1>
+
+<div class="row text-center  ">
+  <div id="ilkoyuncu" class="col-6 d-flex justify-item-center align-items-center flex-column text-center">
+    <h2>Birinci Oyuncu</h2>
+    <img id="zar1" src="1.png" alt="">
+  </div>
+
+  <div id="ikincioyuncu" class="col-6 d-flex justify-item-center align-items-center flex-column text-center">
+    <h2>İkinci Oyuncu</h2>
+    <img id="zar2" src="2.png" alt="">
+  </div>
+
+</div>
+<div class="text-center">
+  <span id="sonuc" class="text-warning"></span> <br>
+  <button onclick="rastgele()" type="button" name="button" class="text center p-3 m-5 ">Zar At !</button>
+</div>
+
+<script type="text/javascript">
+
+function rastgele(){
+var ilkOyuncuElementi = document.querySelector("#ilkoyncu");
+var ikinciOyuncuElementi = document.querySelector("#ikinciOyuncu");
+var zar1Elementi = document.querySelector("#zar1");
+var zar2Elementi = document.querySelector("#zar2");
+var sonucElementi = document.querySelector("#sonuc");
+
+var rastgeleSayi1 = Math.floor(Math.random()*6)+1;
+var rastgeleSayi2 = Math.floor(Math.random()*6)+1;
+
+
+var resim1 = rastgeleSayi1 + ".png";
+zar1.setAttribute("src", resim1);
+
+var resim2 = rastgeleSayi2 + ".png";
+zar2.setAttribute("src", resim2);
+
+
+
+
+  if(rastgeleSayi1>rastgeleSayi2){
+    sonuc.innerText="Birinci Oyuncu Kazandı"
+  }else if(rastgeleSayi2>rastgeleSayi1){
+    sonuc.innerText="İkinci Oyuncu Kazandı"
+  }else {
+    sonuc.innerText="Oyn Berabere"
+  }
+
+}
+rastgele();
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

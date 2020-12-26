@@ -1,0 +1,25 @@
+29 Ekim 2020 - Perşembe
+
+-----------------------------DERS NOTLARI-----------------------------
+css position(konumlandırma) : bir elementin web sayfasında nasıl konumlanacağını belirleyebiliyoruz.
+
+position: static;   --> Eğer siz farklı bir position özelliği kazandırmazsanız, elementlerin default position değeri "static"tir.
+	***** top, left, right, bottom gibi pozisyon değerleri ÇALIŞMAZ.
+
+position: relative; --> Elementler normal konumunda bulunuyor fakat eğer biz istersek o elementi bulunduğu konuma göre farklı bir pozisyona götürebiliyoruz.
+	***** top, left, right, bottom gibi pozisyon değerleri ÇALIŞIR.
+
+position: absolute; --> Elemente direk pozisyon verebiliyoruz. Relative'de olduğu gibi eski bulunduğu konuma göre HAREKET ETMİYOR.. Direk bizden aldığı pozisyon değerlerine göre hareket ediyor. Poziyonu belirlerken bir üstteki RELATİVE elemente göre konum alıyor. Eğer bu elementin PARENT(bir üstteki element) elementi RELATİVE değilse, o zaman BODY'ye göre hareket eder.
+	***** top, left, right, bottom gibi pozisyon değerleri ÇALIŞIR.
+
+position: fixed; --> Bir elemanı, sabitleyip sürekli o noktada tutmak için kullanılır. Sayfanın aşağısına inseniz de herhangi bir değişiklik olmaz. O element hep bulunduğu konumu korur.
+	***** top, left, right, bottom gibi pozisyon değerleri ÇALIŞIR.
+
+position: sticky; --> Bir elementi, belirlediğimiz poziyonda yapışkan hale getirebilir. Eğer kaydırma çubuğu o pozisyona gelirse ve element o pozisyonu görürse element oraya yapışır kalır.
+	***** top, left, right, bottom gibi pozisyon değerleri ÇALIŞIR.
+
+
+z-index : Elementleri, sanki 3 boyutlu bir ortamdaymışız gibi ön plana çıkarabiliyoruz. "z-index" değeri büyük olan element en üstte görünüyor.
+	*Elementlerin default z-index değeri "0"dır.
+	*Z-index değeri, pozitif ve negatif sayı değeri alabilir.
+	***** Z-INDEX DEĞERİNİ kullanabilmek için elementin absolute, relative, fixed gibi position değeri alması gerekiyor.

@@ -1,0 +1,23 @@
+23 Ekim 2020 - Cuma
+
+----------------------------- DERS NOTLARI -------------------------------
+
+***** "inline" yani satır içi elementler. Kendisinden önce ve sonra gelen elementlerle birlikte aynı satırda yer alır. genişlik ve yükseklik değerlerinden etkilenemeyebilirler.(değişiklik gösterir)
+	i, a, img, span, strong
+
+***** "block" elementler. genişlik ve yükseklik gibi değerlerden etkilenirler. Kendisinden sonra gelen elementi otomatik olarak alt satıra ekletir.
+	div, h1, h2..., p, ol, ul, li
+
+***** "inline-block", "inline" ve "block" özelliklerinin birleşimi. hem aynı satırda buluyor hem de genişlik, yükseklik gibi değerlerden etkileniyor.
+
+***** "none"
+
+***** "flex"
+
+---------------------------------------------------------------------------
+
+float : elementin pozisyonunu belirler.
+		right : element, içinde bulunduğu elementin sağ tarafına gider
+		left  : element, içinde bulunduğu elementin sol tarafına gider
+
+***** CSS'de ".css" dosyasının alt tarafına yazılan kod önceliklidir.

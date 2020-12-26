@@ -1,0 +1,23 @@
+30 Ekim Cuma - 2020
+
+------------------------------DERS NOTLARI----------------------------
+
+***** Bootstrap.css'deki tasarım verilerini değiştirmek için, class ismini kendi css dosyamıza yazarız ve orada değişiklik yaparız.
+
+<section> : bu tag yardımıyla sayfamızı bölümlere ayıracağız.
+	üst kısmını -> section
+	orta kısmını -> section
+	alt kısmını -> section
+	sağ kısmını -> section
+
+width: genişlik değerini kesin olarak belirliyordu.
+max-width: elementin alabileceği maksimum genişlik değeri.
+min-width: elementin alabileceği minimum genişlik değeri.
+
+.container: sağdan ve soldan belirli miktarda boşluk bırakır.
+.container-fluid: tam ekran genişliği kullanır.
+
+.bg-success : bu tarz classlar yardımıyla arkaplan renklendirebiliriz.
+.text-success : bu tarz classlar yardımıyla yazının rengini değiştiriz
+
+justify-content: end; --> elementleri en sağ tarafa ekler.

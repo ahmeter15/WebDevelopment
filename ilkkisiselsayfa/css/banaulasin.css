@@ -1,0 +1,25 @@
+.button {
+  padding: 22px;
+  margin: 6px;
+  background-color: #d9e4dd;
+  color:#555555;
+  border: 0;
+  border-radius: 6px;
+
+
+}
+
+body {
+  background-color: #fbf7f0;
+  font-family:sans-serif;
+  font-size: 16px;
+}
+
+.inputtex {
+  border-radius: 5px;
+  border: 1px solid grey;
+  width: 300px;
+  padding: 6px;
+  margin: 3px;
+
+}

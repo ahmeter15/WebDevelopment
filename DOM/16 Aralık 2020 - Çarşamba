@@ -1,0 +1,11 @@
+16 Aralık 2020 - Çarşamba
+Liste
+0. index : 10
+1. index : 50
+2. index : 100
+Eleman Sayısı : 3
+3. elementin indexi : 2
+<ul>    : element
+[<ul>]  : array, 1 eleman
+innerHTML : elementin içine HTML kodu ekler, HTML kodunun içinde sadece yazı olsa bile ekleme işlemini tamamlar.
+innerText : elementin sadece yazısını değiştirir.

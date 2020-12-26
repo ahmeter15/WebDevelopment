@@ -1,0 +1,32 @@
+14 Ekim 2020 - Çarşamba
+Son Ders Tekrar:
+----------------
+<html> : sayfanın içerisindeki tüm elementleri kapsayan ana bir tag.
+<body> : tasarımlarımızın, elementlerimizin yer aldığı tag.
+<head> : içerisinde sayfamız ile ilgili bilgilerin ve öncesinde çalıştırılacak kodların(css / javascript vs.) bulunduğu tag.
+<title> : sayfamızın başlığını içeren tag.
+<h1,h2,h3,h4,h5,h6> (headings) : içerisine yazılan yazıyı, taga göre şekillendiren(büyük-küçük, kalın harfli) taglar.
+<br> : satır atlamaya yarayan tag. KAPANMAK ZORUNDA DEĞİLDİ !
+<em> ve <i> : yazıyı eğik hale getirmek için kullandığımız taglar.(em tagını kullanmak öneriliyor.)
+<ul> ve <ol> : listeleme yapmak için kullanırız. eğer ul kullanırsak herhangi bir numaralandırma olmaz, ol kullanırsak numaralandırma olur.
+	<ul>
+		<li>Merhaba</li>
+	</ul>
+<img> : resim eklemek için kullandığımız tag.
+	<img width="100" height="200" src="resmin bulunduğu adres" />
+<hr> : düz bir çizgi eklemek için kullandığımız tag.
+<a> : sayfaya link eklemek için kullanılır.
+	<a target="_blank" href="gitmek istediğimiz adres">Link</a>
+	target="_blank" --> linki yeni pencerede açıyor.
+<p> : herhangi bir paragraf başlatmak için kullanılır.
+<b> ve <strong> : bir yazıyı kalın yazmak için kullanılır. (strong öneriliyor.)
+-------------------------------DERS NOTLARI----------------------------
+<table> : tablo oluşturmak için kullanılır. içerisinde <thead> ve <tbody> diye iki bölüm olabilir. (olmak zorunda değil.)
+	width 	: hücrenin genişliği
+	align 	: hücrenin içindeki yazının pozisyonu(left, center, right)
+	bgcolor : hücrenin arkaplan rengi
+<thead> : tablonun içerisindeki sütunların başlıklarının eklendiği bölüm.
+<tbody> : tablonun verilerinin eklendiği, içerisinde satırların bulunduğu bölüm.
+<tr>    : tablonun içerisine eklenen hücrelerin bulunduğu satır. satır oluşturmak için kullanırız.
+<td>    : tr'nin içerisine (tbody'nin içindeki) hücre eklemek için kullanılır.
+<th>    : tr'nin içerisine (thead'in içindeki) hücre eklemek için kullanılır.

@@ -1,0 +1,277 @@
+-- Data ekledik
+-- Tablodaki dataları update etmek--- değiştirmek 
+
+CREATE TABLE tedarikciler
+(
+id number(10),
+isim varchar2(50),
+iletisim_isim varchar2(50),
+CONSTRAINT tedarikci_pk PRIMARY KEY (id, isim) );
+
+	INSERT INTO tedarikciler VALUES (1, 'ACB', 'Ali Can');
+	INSERT INTO tedarikciler VALUES (2, 'RDB', 'Veli Gul');
+	INSERT INTO tedarikciler VALUES (3, 'KMN', 'Ayse Gulmez');
+
+SELECT *
+FROM tedarikciler;
+
+-- Tablodaki belirli fieldlardaki data ları değiştirmek için UPDATE komutu kullanılır.
+
+-- id'si 1 olan tedarikcinin ismini 'KRM' ve iletisim_ismini 'Kemal Can' yapalım.
+-- Where SQL'de filtrelemek için kullanılır. 
+
+UPDATE tedarikciler
+SET isim = 'KRM',iletisim_isim = 'Ayse Can'
+WHERE id =1;
+
+UPDATE tedarikciler
+SET iletisim_isim = 'Kemal Can'
+WHERE id =1;
+
+-- ismi RDB olan tedarikcinin iletisim ismini Fatma Ay olarak degiştirin.
+
+UPDATE tedarikciler
+SET iletisim_isim = 'Fatma Ay'
+WHERE isim = 'RDB';
+
+-- id'si 3 olan tedarikcinin ismini IBM iletisim ismini Mehmet Yılmaz olarak değiştirin.
+
+UPDATE tedarikciler
+SET isim = 'IBM', iletisim_isim = 'Mehmet Yilmaz'
+WHERE id = 3;
+
+CREATE TABLE ogrenciler
+(
+ogrenci_id char(9),
+ogrenci_isim varchar2(50),
+adres varchar2(80),
+ogrenci_not number(3),
+son_guncelleme_tarihi date,
+CONSTRAINTS id_pk PRIMARY KEY(ogrenci_id)
+);
+
+
+INSERT INTO ogrenciler (ogrenci_id,ogrenci_isim,son_guncelleme_tarihi) VALUES ('456789123','Jack','09-Aug-20'); 
+INSERT INTO ogrenciler (ogrenci_id,ogrenci_isim,son_guncelleme_tarihi) VALUES ('567891234','Jany','17-Aug-20');  
+INSERT INTO ogrenciler VALUES ('123456789', 'Ali Can', 'Miami FL' ,87,'11-Aug_20'); 
+INSERT INTO ogrenciler VALUES ('234567891', 'Angie Star', 'Tampa FL' ,97,'10-Aug_20');
+INSERT INTO ogrenciler VALUES ('567891433', 'Sedat Basaran', 'New York' ,97,'10-Aug_20');
+INSERT INTO ogrenciler VALUES ('789143356', 'Ayse Baskal', 'Florida' ,70,'10-Aug_20');
+SELECT *
+FROM ogrenciler;
+
+-- Notu 90 ın altında olan ogrencilerin adreslerini 'Texas' olarak güncelleyin.
+
+UPDATE ogrenciler
+SET adres ='Texas'
+WHERE ogrenci_not <90 ;
+
+-- İsmi Jack olan öğrencilerin ismini 'Jack Sparrow' ve Jany olan öğrencinin ismini 'Jany Stone' olarak güncelleyin.
+
+UPDATE ogrenciler
+SET ogrenci_isim = 'Jack Sparrow' 
+WHERE ogrenci_id = '456789123';
+
+UPDATE ogrenciler
+SET ogrenci_isim = 'Jany Stone'
+WHERE ogrenci_isim = 'Jany';
+
+-- Notu 75 ten kücük veya 90 dan büyük olanların adreslerini 'Istanbul' olarak güncelleyelim.
+
+UPDATE ogrenciler
+SET adres = 'Istanbul'
+WHERE ogrenci_not <75 OR ogrenci_not >90 ;
+
+-- Notu 80 ile 97 arasında olan öğrencilerin son güncelleme tarihlerini '05-Nov-20' ile değiştirin.
+-- BETWEEN 
+
+UPDATE ogrenciler
+SET son_guncelleme_tarihi = '05-Nov-20' 
+WHERE ogrenci_not >80 AND ogrenci_not <97;   ================80=============90======================
+
+SELECT *
+FROM ogrenciler;
+
+UPDATE ogrenciler
+SET son_guncelleme_tarihi = '05-Nov-20' 
+WHERE ogrenci_not BETWEEN 80 AND 97;
+
+-- 80 den küçük veya 90 dan büyük olanlar için 
+
+-- NOT BETWEEN 
+-- Notu 80 den küçük veya 90 dan büyük olanları 85 e eşitle 
+UPDATE ogrenciler
+SET ogrenci_not = 85
+WHERE ogrenci_not NOT BETWEEN 80 AND 90 ;
+
+-- Notları 80 den küçük ve 90 dan büyük olanların şehrini Paris olarak güncelle
+
+UPDATE ogrenciler
+SET adres = 'Paris'
+WHERE ogrenci_not <80 AND ogrenci_not >90 ;
+
+
+-- INTERVIEW QUESTION
+-- SQL de hatalarda işleyiş şu şekildedir.
+-- Eğer update olabilecek bir data varsa SQL onu update eder--- 1 rows updates.
+-- Update edilecek bir data yoksa SQL hata vermez. 
+-- SQL 0 row s updated mesajı verir.
+
+SELECT *
+FROM ogrenciler;
+
+-- IS NULL komutu boş bırakılan field lara değer girmek için kullanılır. 
+
+UPDATE ogrenciler
+SET adres = 'Adres Yok'
+WHERE adres IS NULL;
+
+
+-- Öğrenci notu boş olan field lara 0 yazın
+
+UPDATE ogrenciler
+SET ogrenci_not =0
+WHERE ogrenci_not IS NULL;
+
+CREATE TABLE ogrenci_bilgileri
+(
+ogrenci_id char (9),
+ogrenci_telefonu char(10),
+ogrenci_ortalama number (5,2) NOT NULL, 
+CONSTRAINTS ob_fk FOREIGN KEY (ogrenci_id) REFERENCES ogrenciler (ogrenci_id)
+);
+
+INSERT INTO ogrenci_bilgileri VALUES ('234567891', '4567891234' ,87); 
+INSERT INTO ogrenci_bilgileri VALUES ('345678912','5678912340' ,97);
+INSERT INTO ogrenci_bilgileri VALUES ('567891433','6789123406' ,80);
+INSERT INTO ogrenci_bilgileri VALUES ('789143356','7891234066' ,70);
+
+SELECT*
+FROM ogrenciler;
+
+SELECT*
+FROM ogrenci_bilgileri;
+
+-- Tabloyu silme 
+--  DELETE FROM metoduyla tablo silme 
+-- istediğim belirli bir field ı silebilirim. 
+DELETE FROM ogrenciler
+WHERE ogrenci_id = '123456789';
+
+DROP TABLE ogrenciler;
+DROP TABLE ogrenci_bilgileri ;
+
+SELECT *
+FROM ogrenciler;
+
+CREATE TABLE ogrenciler
+(
+ogrenci_id char(9),
+ogrenci_isim varchar2(50),
+adres varchar2(80),
+ogrenci_not number(3),
+son_guncelleme_tarihi date,
+CONSTRAINTS id_pk PRIMARY KEY(ogrenci_id)
+);
+
+INSERT INTO ogrenciler (ogrenci_id,ogrenci_isim,son_guncelleme_tarihi) VALUES ('456789123','Jack','09-Aug-20'); 
+INSERT INTO ogrenciler (ogrenci_id,ogrenci_isim,son_guncelleme_tarihi) VALUES ('567891234','Jany','17-Aug-20');  
+INSERT INTO ogrenciler VALUES ('123456789', 'Ali Can', 'Miami FL' ,87,'11-Aug_20'); 
+INSERT INTO ogrenciler VALUES ('234567891', 'Angie Star', 'Tampa FL' ,97,'10-Aug_20');
+INSERT INTO ogrenciler VALUES ('567891433', 'Sedat Basaran', 'New York' ,97,'10-Aug_20');
+INSERT INTO ogrenciler VALUES ('789143356', 'Ayse Baskal', 'Florida' ,70,'10-Aug_20');
+
+CREATE TABLE ogrenci_bilgileri
+(
+ogrenci_id char (9),
+ogrenci_telefonu char(10),
+ogrenci_ortalama number (3), 
+CONSTRAINTS ob_fk FOREIGN KEY (ogrenci_id) REFERENCES ogrenciler (ogrenci_id)
+);
+INSERT INTO ogrenci_bilgileri VALUES ('234567891','4567891234' ,70); 
+INSERT INTO ogrenci_bilgileri VALUES ('123456789','5678912340' ,75);
+INSERT INTO ogrenci_bilgileri VALUES ('789143356','7891234066' ,70);
+
+
+INSERT INTO ogrenci_bilgileri VALUES ('234567891', '4567891234' ,87);
+INSERT INTO ogrenci_bilgileri VALUES ('123456789','5678912340' ,75);
+INSERT INTO ogrenci_bilgileri VALUES ('567891433','6789123406' ,90);
+INSERT INTO ogrenci_bilgileri VALUES ('789143356', '7891234066' ,70);
+
+INSERT INTO ogrenci_bilgileri VALUES ('234567891', '4567891234' ,87);
+INSERT INTO ogrenci_bilgileri VALUES ('567891433','5678912340' ,97);
+INSERT INTO ogrenci_bilgileri VALUES ('123456789','6789123406' ,90);
+INSERT INTO ogrenci_bilgileri VALUES ('789143356', '7891234066' ,70);
+
+SELECT*
+FROM ogrenci_bilgileri;
+
+CREATE TABLE ogrenciler
+(
+ogrenci_id char(9),
+ogrenci_isim varchar2(50),
+adres varchar2(80),
+ogrenci_not number(3),
+son_guncelleme_tarihi date,
+CONSTRAINTS id_pk PRIMARY KEY(ogrenci_id)
+);
+INSERT INTO ogrenciler (ogrenci_id,ogrenci_isim,son_guncelleme_tarihi) VALUES ('456789123','Jack','09-Aug-20');
+INSERT INTO ogrenciler (ogrenci_id,ogrenci_isim,son_guncelleme_tarihi) VALUES ('567891234','Jany','17-Aug-20');
+INSERT INTO ogrenciler VALUES ('123456789', 'Ali Can', 'Miami FL' ,87,'11-Aug_20');
+INSERT INTO ogrenciler VALUES ('234567891', 'Angie Star', 'Tampa FL' ,97,'10-Aug_20');
+INSERT INTO ogrenciler VALUES ('567891433', 'Sedat Basaran', 'New York' ,97,'10-Aug_20');
+INSERT INTO ogrenciler VALUES ('789143356', 'Ayse Baskal', 'Florida' ,70,'10-Aug_20');
+SELECT * FROM ogrenciler
+CREATE TABLE ogrenci_bilgileri
+(
+ogrenci_id char (9),
+ogrenci_telefonu char(10),
+ogrenci_ortalama number (3),
+CONSTRAINTS si_fk FOREIGN KEY (ogrenci_id) REFERENCES ogrenciler (ogrenci_id)
+);
+INSERT INTO ogrenci_bilgileri VALUES ('234567891', '4567891234' ,87);
+INSERT INTO ogrenci_bilgileri VALUES ('567891433','5678912340' ,97);
+INSERT INTO ogrenci_bilgileri VALUES ('123456789','6789123406' ,90);
+INSERT INTO ogrenci_bilgileri VALUES ('789143356', '7891234066' ,70);
+SELECT * FROM ogrenci_bilgileri;
+
+-- Subquery 
+-- Alt sorgu 
+-- mülakatlarda çokça sorulur 
+
+--  Ali Can'ın notunu öğrenci bilgileri tablosundaki not ortalaması ile değiştir.
+
+UPDATE ogrenciler
+SET ogrenci_not = (SELECT ogrenci_ortalama
+                   FROM ogrenci_bilgileri
+                   WHERE ogrenci_id = '123456789')---- Ali Can'ın ogrenci bilgileri tablosundaki not ortalaması
+WHERE ogrenci_isim = 'Ali Can';
+
+SELECT *
+FROM ogrenciler;
+
+-- Ogrenci bilgileri tablosundan ogrenci_telefonu datasını alın Angie Star'ın adresi yapın 
+
+UPDATE ogrenciler 
+SET adres = (SELECT ogrenci_telefonu
+            FROM ogrenci_bilgileri
+            WHERE ogrenci_id = '234567891' )
+WHERE  ogrenci_id = '234567891';        
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

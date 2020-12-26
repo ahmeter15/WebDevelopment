@@ -1,0 +1,63 @@
+17 Aralık 2020 - Perşembe
+Son Ders Tekrar:
+----------------
+document.getElementsByTagName("")  -> herhangi bir tag ismine göre element arama
+<section id="ust-bolum"></section>
+<section id="orta-bolum"></section> -> 
+		document.getElementByID("orta-bolum").getElementsByTagName("")
+<section id="alt-bolum"></section>
+<h1 class="deneme">Deneme</h1>
+document.getElementsByClassName("deneme") -> elementin class değerine göre arama yapar
+	liste -> 1 tane element var -> 0. indexte
+	document.getElementsByClassName("deneme")[0]
+document.getElementById("") ->	herhangi bir elementi, id'sine göre arar ve getirir.
+document.querySelector    -> ilk bulduğu elementi getirir.
+	document.querySelector("h1") -> sayfanın en üstündeki h1'i getirir.
+	örnek : h1 (tagName)
+	örnek : .aciklama (className)
+	örnek : #baslik (idName)
+	örnek : .aciklama.isim (hem açıklama hem de isim - class="aciklama isim")
+	örnek : .aile .cocuk (parent elementin class'ı aile, child elementin class'ı cocuk)
+			<div class="aile">
+				<h1 class="cocuk">Çocuk</h1>
+			</div>	
+	örnek : #baslik.kirmizi (<div id="baslik" class="kirmizi">)		
+	örnek : h2#baslik.sari (<h2 id="baslik" class="sari">)
+	örnek : .sari, .yesil (class değeri sari ya da yesil olan elementler)
+			<h2 class="sari">
+			<a class="yesil">
+			document.querySelectorAll(".sari , .yesil") ->sayfadaki tüm class değeri
+			sari ya da yesil olan elementleri getirir.
+document.querySelectorAll ->
+	document.querySelectorAll("h1") -> sayfanın içerisinde tüm h1 elementlerini getirir.
+var elementIsmi = document.querySelector("h1");
+elementIsmi.innerText = "örnek";
+elementIsmi.innerHTML = "<b><i>Selamlar</i></b>";
+elementIsmi.style.color = "red";
+--------------------------------------DERS NOTLARI------------------------------------
+bir elemente class değeri ekleme:
+classList : elementin sahip olduğu class değerlerini listeler.
+classList.contains("classIsmi") : class varsa true yoksa false değeri gelir.
+classList.add("eklenecek-class") :  elemente class ekleyebiliyoruz.
+classList.remove("silinecek-class") : element'ten class silebiliyoruz.
+classList.toggle("class-degeri") : o class varsa silinir, yoksa eklenir.
+classList.replace("bg-dark", "bg-danger") : bg-dark ile bg-danger classlarını değiştrir
+bir elementin attribute değerlerinde değişiklik yapma:
+<h1 class="sari" id="baslik" style="color: red; background-color: yellow; font-size:2rem;">Merhabalar</h1>
+attributeler : class, id, style
+attribute ekleme  : document.querySelector("h1").setAttribute("class", "sari bg-dark")
+attribute silme   : document.querySelector("h1").removeAttribute("id")
+attribute listesi : document.querySelector("h1").attributes
+attribute değeri  : document.querySelector("h1").getAttribute("class")
+attribute varMi   :	document.querySelector("h1").hasAttribute("class") //true false
+hamza attribute gibi, html tarafından tanınmayan attributeler neden kullanılabilir ?
+<div class="urun" fiyat="10" kat="kirtasiye">Makas <br>10 tl</div>
+<div class="urun" fiyat="20" kat="kirtasiye">Kağıt <br>20 tl</div>
+<div class="urun" fiyat="50" kat="kirtasiye">Kalem <br>50 tl</div>
+document.querySelectorAll(".urun")[0].getAttribute("fiyat") -> 10
+document.querySelectorAll(".urun")[1].getAttribute("fiyat") -> 20
+document.querySelectorAll(".urun")[2].getAttribute("fiyat") -> 50
+document.querySelectorAll(".urun")[0].getAttribute("kat") -> kirtasiye
+document.querySelectorAll(".urun")[1].getAttribute("kat") -> kirtasiye
+document.querySelectorAll(".urun")[2].getAttribute("kat") -> kirtasiye
+onclick="renkDegistirme()" : bir elemente tıklandığında çağırmak istediğiniz methodu attribute'un içine yazıyorsunuz.

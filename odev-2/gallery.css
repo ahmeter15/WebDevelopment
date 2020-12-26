@@ -1,0 +1,41 @@
+body {
+  box-sizing: border-box;
+
+}
+.container {
+  background: #ea907a;
+  margin-left: 30%;
+  margin-right: 30%;
+  border-radius: 15px;
+  border: 1px solid #ea907a;
+
+}
+.baslik {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 2rem;
+  font-family: serif;
+}
+.foto-ana {
+  background: white;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+
+}
+.inline-block {
+  display: inline-block;
+  width: 45%;
+  height: 220px;
+  padding: 2%;
+
+
+
+}
+img {
+  width: 250px;
+  height: 220px;
+  border-radius: 15px;
+}

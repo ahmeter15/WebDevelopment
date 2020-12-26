@@ -1,0 +1,283 @@
+-- Select *
+-- FROM table 
+-- CREATE TABLE calisanlar ();
+-- UPDATE calisanlar 
+-- SET sehir = 'Istanbul'
+-- WHERE maas = 50000;
+
+-- SUBQUERY 
+-- Bir datayı başka bir tablodan almak gerekirse subquery 
+-- Alican ogrenciler ogrenci_bilgileri 
+
+-- UPDATE ogrenciler 
+-- SET ogrenci_not = (SELECT ortlama
+--
+                        
+-- WHERE name = 'Ali Can';
+
+-- Tablodan  Veri Silme 
+
+CREATE TABLE mart_satislar 
+(
+urun_id number(10),
+musteri_isim varchar2(50), 
+urun_isim varchar2(50),
+urun_fiyat number(10)
+);
+
+INSERT INTO mart_satislar VALUES (10, 'Ali', 'Honda',75000);
+INSERT INTO mart_satislar  VALUES (10, 'Ayse', 'Honda',95200);
+INSERT INTO mart_satislar VALUES (20, 'Hasan', 'Toyota',107500);
+INSERT INTO mart_satislar VALUES (30, 'Mehmet', 'Ford', 112500);
+INSERT INTO mart_satislar VALUES (20, 'Ali', 'Toyota',88000);
+INSERT INTO mart_satislar VALUES (10, 'Hasan', 'Honda',150000);
+INSERT INTO mart_satislar VALUES (40, 'Ayse', 'Hyundai',140000);
+INSERT INTO mart_satislar VALUES (20, 'Hatice', 'Toyota',60000);
+
+SELECT *
+FROM mart_satislar;
+
+--Ismi hatice olan musterinin urun_id’sini 30,urun_isim’ini Ford yapin
+
+UPDATE mart_satislar
+SET urun_id =30 , urun_isim='Ford'
+WHERE musteri_isim = 'Hatice';
+
+--Toyata marka araclara %10 indirim yapin
+--Ismi Ali olanlarin urunfiyatlarini %15 artirin
+--Honda araclarin urun kodu’nu 50 yapin
+
+UPDATE mart_satislar
+SET urun_fiyat = urun_fiyat*0.9
+WHERE urun_isim = 'Toyota';
+
+UPDATE mart_satislar
+SET urun_fiyat = urun_fiyat*1.15
+WHERE musteri_isim = 'Ali';
+
+UPDATE mart_satislar
+SET urun_id = 50
+WHERE urun_isim = 'Honda';
+
+SELECT *
+FROM mart_satislar ;
+
+UPDATE mart_satislar
+SET urun_fiyat = urun_fiyat- (urun_fiyat*0.1)
+WHERE urun_isim = 'Ford';
+
+
+CREATE TABLE ogrenciler
+(
+id char(3),
+isim varchar2(50),
+veli_isim varchar2(50),
+yazili_notu number(3),
+CONSTRAINT ogrenciler_pk PRIMARY KEY (id)
+);
+
+	INSERT INTO ogrenciler VALUES(123, 'Ali Can', 'Hasan',75);
+	INSERT INTO ogrenciler VALUES(124, 'Merve Gul', 'Ayse',85);
+	INSERT INTO ogrenciler VALUES(125, 'Kemal Yasa', 'Hasan',85);
+
+-- Tablodan veri silme 
+-- Delete From 
+-- Sadece belirli field ları silebilme özelliği var .
+DELETE FROM ogrenciler ;
+
+SELECT *
+FROM ogrenciler;
+-- DELETE FROM sadece dataları siler .
+-- Tablonun structure ı yani tablo yapısal olarak kalmaya devam eder. 
+-- DROP TABLE ogrenciler ;
+--Dataları ve tablonun iskeletini siler .
+-- DELETE FROM ve DROP FROM kullandıldığı taktirde silinen tüm datalar geri getirilebilir.
+-- DROP FROM ogrenciler PURGE ; 
+-- PURGE komutu DROP tan sonra kullanılırsa silinen datalar geri getirilemez. 
+
+DROP TABLE ogrenciler;
+
+-- İsmi Ali Can olan field ı silelim
+
+DELETE FROM ogrenciler
+WHERE isim = 'Ali Can';
+
+-- Delete from WHERE ile kullanılabilir. 
+-- İstediğimiz field ı hatta record u silebilmemize olanaka sağlar. 
+
+-- yazili_notu 85 olan ogreniciyi silin. 
+
+DELETE FROM ogrenciler
+WHERE yazili_notu = 85 ;
+
+SELECT *
+FROM ogrenciler;
+
+-- ogrenci_isim = Ali Can olan veya Veli_isim Ayse olanları silin. 
+
+DELETE FROM ogrenciler
+WHERE isim = 'Ali Can' OR veli_isim = 'Ayse'; -- OR da her iki ifadeyi de siler.
+
+DELETE FROM ogrenciler
+WHERE isim = 'Ali Can' AND veli_isim = 'Ayse'; -- AND te şart sağlanmadığı için 0 ROWs updated der. 
+
+-- TRUNCATE metodu da tablolarda silmeye yarar .
+-- TRUNCATE de DELETE deki gibi datalar silinir ama tablonun iskeleti kalır.
+-- TRUNCATE i DELETE ve DROP tan ayıran özelliği silinen datalar geri getirilemiyor. Yani güvenlik açısından faydalı. 
+
+
+
+-- TRUNCATE, DROP VE DELETE arasındaki farklar nelerdir ?
+-- DROP VE DELETE de veriler geri getirilebilir -- roll back 
+-- TRUNCATE de geri getirilemez.
+-- TRUNCATE den sonra WHERE kullanılmaz. 
+--TRUNCATE ve DELETE de iskelet kalmaya devam eder. 
+-- Hem verileri geri getirilemeyecek şekilde hem tablonun iskeletini silmek istersek DROP TABLE PURGE kullanmak gerekir.
+
+-- Purge verileri geri getirilemeyecek şekilde siler.
+-- Hassass bilgiler içeren tablolar için PURGE kullanıldığı taktirde verilerin güvenliği sağlanmış olur. 
+
+-- FLASHBACK TABLE ogrenciler TO BEFORE DROP ;
+-- komutu tablonun silinen verilerini geri getirir. 
+
+DROP TABLE ogrenciler;
+
+FLASHBACK TABLE ogrenciler TO BEFORE DROP ;
+
+CREATE TABLE ogrenciler
+(
+id number(9), 
+isim varchar2(50), 
+adres varchar2(100),
+yazili_not number(3)
+);
+
+INSERT INTO ogrenciler VALUES(123, 'Ali Can', 'Ankara',75);
+INSERT INTO ogrenciler VALUES(124, 'Merve Gul', 'Ankara',85);
+INSERT INTO ogrenciler VALUES(125, 'Kemal Yasa', 'Istanbul',85);
+
+SELECT *
+FROM ogrenciler;
+
+-- Tablodaki tüm verileri görmeyi sağlar---- * Yıldız
+
+-- Yazılı notu 80 in üzerinde olanları görmek için 
+
+SELECT *
+FROM ogrenciler
+WHERE yazili_not >80;
+
+-- Sadece belirli bir field ı görmek istersek ?
+-- Yazili notu 80 den büyük olanlar için adresi görmek istersek
+
+SELECT adres
+FROM ogrenciler
+WHERE yazili_not >80;
+
+-- Adresi Ankara olan öğrencilerin İsimlerini getirelim.
+
+SELECT isim
+FROM ogrenciler
+WHERE adres = 'Ankara';
+
+-- Id 'si 123 e eşit olan field ın adres ve ismini göster .
+
+SELECT adres,isim
+FROM ogrenciler
+WHERE id = 123;
+
+-- İsmi Ali can veya Merve Gül veya Kemal Yasa olanların adreslerini göster
+
+SELECT adres
+FROM ogrenciler 
+WHERE isim = 'Ali Can' OR isim = 'Merve Gul' OR isim = 'Kemal Yasa' ;
+
+-- Hard Code -- Ne kadar az tekrarlı OR kullanırsak kodlarımız o kadar dinamik olur.
+
+SELECT adres
+FROM ogrenciler
+WHERE isim IN ('Ali Can', 'Merve Gul', 'Kemal Yasa');
+
+
+SELECT adres
+FROM ogrenciler;
+
+CREATE TABLE calisanlar
+( 
+id number(9), 
+isim varchar2(50), 
+adres varchar2(50), 
+maas number(20), 
+sirket varchar2(20) 
+);
+
+
+
+INSERT INTO calisanlar VALUES (123456789,'John Wlaker','Florida', 2600,'IBM');
+INSERT INTO calisanlar VALUES (234567891,'Brad Pit','Florida', 1500,'APPLE');
+INSERT INTO calisanlar VALUES (345678912,'Eddie Murphy ','Texas', 3000,'IBM');
+INSERT INTO calisanlar VALUES (456789123,'Eddie Murphy','Virginia', 1000,'GOOGLE');
+INSERT INTO calisanlar VALUES (678912345,'Eddie Murphy','Texas', 7000,'MICROSOFT');
+INSERT INTO calisanlar VALUES (789123456,'Brad Pit','Texas', 1500,'GOOGLE');
+INSERT INTO calisanlar VALUES (891234567,'Mark Stone','Michigan', 2500,'GOOGLE');
+
+CREATE TABLE sirketler
+( 
+sirket_id number (9), 
+sirket varchar2(20), 
+calisan_sayisi number (20) 
+);
+
+INSERT INTO sirketler VALUES (100,'IBM',12000);
+INSERT INTO sirketler VALUES (101,'GOOGLE',18000);
+INSERT INTO sirketler VALUES (102,'MICROSOT',10000);
+INSERT INTO sirketler VALUES (103,'APPLE',21000);
+INSERT INTO sirketler VALUES (104,'MICROSOFT',10000)
+-- SUBQUERY
+
+SELECT *
+FROM calisanlar;
+
+SELECT *
+FROM sirketler;
+
+-- Çalışan sayısı 15000 den fazla olan şirketlerin ismini ve çalışanlarının ismini bulun
+
+SELECT isim,sirket
+FROM calisanlar 
+WHERE sirket IN (SELECT sirket
+                FROM sirketler
+                WHERE calisan_sayisi>15000
+                );
+                
+-- WHERE calisan_sayisi >15000 
+
+-- Florida ve ya Texas 'ta olan şirketlerin şirket_id 'sini ve şirket adını bulan sorguyu yazınız.
+
+SELECT sirket_id,sirket
+FROM sirketler
+WHERE sirket IN (SELECT sirket
+                FROM calisanlar
+                WHERE adres IN ('Florida','Texas') );
+
+
+-- Çalışan sayısı 13000 den az olan şirketlerde çalışanların adreslerini ve çalışanların isimlerini bulalım
+
+SELECT adres,isim
+FROM calisanlar
+WHERE sirket IN (SELECT sirket 
+                FROM sirketler
+                WHERE calisan_sayisi <13000 );
+
+-- SELECT adres,isim FROM calisanlar WHERE sirket = 'IBM','Microsoft'; --- IBM calisan sayısı 13000 'den küçük olan şirket
+-- IBM bilgisine şirketler tablosundan ulaştım.
+SELECT isim,adres
+FROM calisanlar
+WHERE sirket = 'IBM' OR sirket = 'MICROSOFT';
+
+
+
+
+
+
+

@@ -1,0 +1,156 @@
+31 Ekim 2020 - Cumartesi
+
+---------------------------SON DERS TEKRAR----------------------------
+
+<section> : Websayfasını bölümlere ayırırken, div yerine bunu tercih edebiliriz. Bu sayede kodlarımızı bölüm bölüm ayırabiliriz ve kendimize kolaylık sağlarız.
+
+.bg-success
+.bg-white     --> arkaplan rengini değiştirmek için kullandığımız
+.bg-warning       class'lar..
+...........
+
+.text-success
+.text-dark    --> yazı rengini değiştirmek için kullandığımız
+.text-danger      class'lar.. 
+...........
+
+.container        --> sağda ve solda biraz boşluk bırakır.
+.container-fluid  --> sağda ve solda boşluk bırakmaz, tam ekran
+
+justify-content: end; --> elementleri en sağa ekliyor.(display:flex)
+
+navbar-dark    --> navbar'daki yazılarımız beyaz oluyor.
+navbar-light   --> navbar'daki yazılarımız siyah oluyor.
+
+max-width	   --> elementin maximum genişlik değeri
+min-width      --> elementin minimum genişlik değeri
+
+
+-----------------------------DERS NOTLARI-----------------------------
+
+line-height:1.5; --> bu özellik sayesinde makalenin içindeki satırlar arasında boşluk bırakabiliyoruz(dikey olarak)
+
+.d-flex : BOOTSTRAP elementinize display:flex özelliği kazandırırsınız.
+.d-inline : BOOTSTRAP elementinize display:inline özellik kazandırırsınız.
+.justify-content-center : BOOTSTRAP d-flex ile beraber kullanılırsa, elementi ortalarsanız.
+.justify-content-end : BOOTSTRAP d-flex ile beraber kullanılırsa, elementi sağ tarafa alırsınız.
+.justify-content-start : BOOTSTRAP d-flex ile beraber kullanılırsa, elementi sol tarafa alırsınız.
+
+.row(satır)   --> bootstrap'te satır oluşturmak için kullandığımız class ismi. bu sadece tek bir satır değil, alt alta gelen satırları da kapsıyor. bir nevi ızgara sistemini oluşturan class ismi.
+    ***** satır sayısını belirleyebiliyoruz ! ancak eğer belirlemezsek kendisi otomatik olarak satır sayısını hesaplıyor gerekirse 30 satır oluşturuyor...
+
+.col(column-kolon-sütun) --> satırın(row) içinde ekleyeceğimiz elementleri bu class yardımıyla sütunlara ayırabiliyoruz.
+	<div class="row">
+		<div class="col">1. Sütun</div>
+		<div class="col">1. Sütun</div>
+		<div class="col">1. Sütun</div>
+	</div>
+
+.col-6 	---> 12'de 6'sı yani 50% si manasına geliyor.
+.col-4 	---> 12'de 4'ü yani  33% ü manasına geliyor.
+.col-12	---> 12'de 12'si yani 100%ü manasına geliyor.
+1,2,3,4,5,6,7,8,9,10,11,12 tüm bu sayıları verebilriz.
+
+.row-cols-1,2,3,4,5,6  --> satırdaki sütun sayısını belirler
+
+.col-lg-6  --> (large) geniş ekranda 6 birimlik yer kaplasın.
+.col-lg-4  --> (large) geniş ekranda 4 birimlik yer kaplasın.
+.col-md-3  --> (medium) orta boy ekranda 3 birimlik yer kaplasın.
+.col-md-6  --> (medium) orta boy ekranda 6 birimlik yer kaplasın.
+.col-sm-6  --> (small) küçük boy ekranda 6 birimlik yer kaplasın.
+.col-sm-12  --> (small) küçük boy ekranda 12 birimlik yer kaplasın.
+
+<div class="col-lg-6 col-md-6 col-sm-12">
+	1. kolon
+</div>
+
+
+transform: rotate(25deg);  --> elementi 25 derece dönderir.
+	***** 25deg ifadesini değiştirebilirsiniz.
+	deg = degree = derece
+
+.m-1
+.m-2
+.m-3   --> sağ sol alt üst her yönden margin
+.m-4
+.m-5
+
+.ml-1 
+.ml-2
+.ml-3  --> sol taraftan margin ekler
+.ml-4
+.ml-5
+
+.mr-1
+.mr-2
+.mr-3  --> sağ taraftan margin ekler
+.mr-4
+.mr-5
+
+.mb-1
+.mb-2
+.mb-3  --> aşağı taraftan margin ekler
+.mb-4
+.mb-5
+
+.mt-1
+.mt-2
+.mt-3  --> üst taraftan margin ekler
+.mt-4
+.mt-5
+
+-----------------------------DERS TEKRARI----------------------------
+
+class="row"  --> ızgara sistemi oluşturmak(yani satır-kolon şeklinde) kullandığımız class.
+
+class="row row-cols-2" --> eğer bu şekilde kullanırsak eklediği elemetleri 2 sütun şeklinde ekler.(sağ-sol)
+
+class="col" --> eklediğimiz sütunları -kaç taneyse- genişliği otomatik olarak belirleniyor ve o şekilde ekleniyor.
+	örnek : 5 tane class="col" oluşturduysak, genişliği 5e böler ve her bir elementin genişliği aynı olur. ve elementler aynı satırda bulunur.
+
+line-height : 1.5;  --> yazımızın satırları arasındaki boşluğu belirleyebiliyoruz.
+
+d-flex
+d-inline -->  elementlerimize display özelliği kazandırabiliriz
+d-block
+
+justify-content-start
+justify-content-center  --> flex elementin içinde elementlerin
+justify-content-end         konumunu belirleyebiliyoruz.
+
+transform:rotate(25deg) --> bu şekilde elementimizi dönderebiliyoruz.
+
+@media (min-width) --> css kodlarını istedğimiz genişlikteki ekranlar
+@media (max-width)     için hazırlayabiliyoruz.
+
+1  1  1  1  1  1  1  1  1  1  1  1
+  2     2     2     2     2     2
+   3        3        3        3
+     4           4           4
+         6               6
+                 12   
+
+text-center
+text-left    --> yazımızın pozisyonu belirleyebiliyoruz.
+text-right
+
+btn-primary
+btn-danger   
+btn-info
+btn-warning  --> butonlar oluşturup kullanabiliyoruz.
+btn-dark
+btn-light
+btn-white
+.........
+
+m-1
+m-2  
+m-3   --> tüm yönlerden margin vermek için
+m-4
+m-5
+
+***** ml-1 , mr-3 ,  mb-5,  mt-2 --> istediğimiz taraftan margin
+
+col-lg
+col-md   --> sütunları large, medium ve small cihazlar için ayarlarız
+col-sm

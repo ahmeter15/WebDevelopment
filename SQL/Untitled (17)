@@ -1,0 +1,237 @@
+CREATE TABLE personel 
+(
+id number(9), 
+isim varchar2(50), 
+sehir varchar2(50), 
+maas number(20), 
+sirket varchar2(20)
+);
+
+INSERT INTO personel VALUES(123456789, 'Ali Seker', 'Istanbul', 2500, 'Honda');
+INSERT INTO personel VALUES(234567890, 'Ayse Gul', 'Istanbul', 1500, 'Toyota');
+INSERT INTO personel VALUES(345678901, 'Veli Yilmaz', 'Ankara', 3000, 'Honda');
+INSERT INTO personel VALUES(456789012, 'Veli Yilmaz',  'Izmir', 1000, 'Ford');
+INSERT INTO personel VALUES(567890123, 'Veli Yilmaz', 'Ankara', 7000, 'Hyundai');
+INSERT INTO personel VALUES(456789012, 'Ayse Gul', 'Ankara', 1500, 'Ford');
+INSERT INTO personel VALUES(123456710, 'Fatma Yasa', 'Bursa', 2500, 'Honda');
+
+
+
+CREATE TABLE sirketler
+(
+sirket_id number(9), 
+sirket varchar2(20), 
+personel_sayisi number(20)
+);
+
+
+INSERT INTO sirketler VALUES(100, 'Honda', 12000);
+INSERT INTO sirketler VALUES(101, 'Ford', 18000);
+INSERT INTO sirketler VALUES(102, 'Hyundai', 10000);
+INSERT INTO sirketler VALUES(103, 'Toyota', 21000);
+
+--Sirket_id’si 101’den buyuk olan sirketlerin maaslarini ve sehirlerini listeleyiniz 
+
+
+SELECT *
+FROM personel;
+
+SELECT *
+FROM sirketler;
+
+
+SELECT maas,sehir,sirket
+FROM personel
+WHERE sirket IN (SELECT sirket 
+                FROM sirketler
+                WHERE sirket_id >101
+                );
+
+-- Ankara’daki sirketlerin sirket id ve calisan sayilarini listeleyiniz
+
+SELECT sirket_id,personel_sayisi,sirket
+FROM sirketler
+WHERE sirket IN (SELECT sirket
+                FROM personel
+                WHERE sehir = 'Ankara'  );
+
+-- Aggregate Fonksiyonları (Aggregate Functions)
+-- SUM- COUNT- MAX- MIN (maas)- AVG
+-- Aggregate Fonksiyonları SELECT ten sonra kullanılır.
+-- Tablolardaki max, min, ortalama, toplam gibi değerleri bulmamızı sağlar. 
+
+-- Personel tablosundaki en yüksek maaşı bulan sorguyu yazalım
+
+SELECT MAX (maas)
+FROM personel;
+
+SELECT MIN (maas)
+FROM personel;
+
+SELECT AVG (maas)
+FROM personel;
+
+-- Tabloda kaç kişi olduğunu
+
+SELECT COUNT (isim)
+FROM personel;
+
+-- İstanbul 'daki en  büyük maaşı bulalım
+
+SELECT MAX (maas) AS  max_maas
+FROM personel
+WHERE sehir = 'Istanbul';
+
+-- Şirket id si 102 den küçük olanların toplam çalışan  sayısını bulalım
+
+SELECT SUM (personel_sayisi) AS total_personel
+FROM sirketler
+WHERE sirket_id <102;
+
+-- ALIASES AS ile birlikte kullanılır.
+-- Tabloların başlıklarının isimlendirilmesinde kullanılır. 
+-- AS bir ALIASES fonkiyonudur.
+-- ALIASES subquery den sonra kullanılmaz.
+-- Subquery den sonra direk yeni bir isim verilir.
+
+
+-- Her sirketin ismini, personel sayisini ve personelin ortalama maasini listeleyen bir QUERY yazin.
+
+
+SELECT *
+FROM personel;
+
+SELECT *
+FROM sirketler;
+
+SELECT sirket,personel_sayisi, (SELECT AVG (maas)
+                             FROM personel
+                             WHERE sirketler.sirket = personel.sirket
+                             ) ortalama_maas
+
+FROM sirketler;
+
+-- Subquery de bu sefer şart değil aranan field select ten sonra yazıldı.
+-- ALIASES subquery den sonra kullanılmaz, direk ortalama_maas denilerek isimlendirilebilir.
+
+--Her sirketin ismini ve  personelin aldigi max. maasi listeleyen bir QUERY yazin.
+
+SELECT sirket ,(SELECT MAX (maas)
+              FROM personel
+              WHERE sirketler.sirket = personel.sirket) max_maas
+FROM sirketler;
+
+--Her sirketin ismini, personel_sayısını ve  personelin aldigi max. maasi listeleyen bir QUERY yazin.
+
+SELECT sirket, personel_sayisi, (SELECT MAX (maas)
+                                FROM personel
+                                WHERE sirketler.sirket = personel.sirket) max_maas
+FROM sirketler;
+
+-- 3- Her sirketin id’sini, ismini ve toplam kac sehirde bulundugunu listeleyen bir QUERY yaziniz.
+
+SELECT sirket_id, sirket, (SELECT COUNT (sehir)
+                            FROM personel
+                            WHERE sirketler.sirket = personel.sirket )sehir_sayisi
+FROM sirketler;
+
+--5- Her sirketin ismini ve personel sayisini ve iscilere odedigi toplam maasi listeleyen bir QUERY yazin.
+
+SELECT sirket, personel_sayisi, (SELECT SUM (maas)
+                                FROM personel
+                                WHERE sirketler.sirket = personel.sirket  ) toplam_maas
+FROM sirketler;
+
+-- (SELECT COUNT (sirket), (), ()
+
+-- EXISTS CONDITION 
+-- Subquery ler ile birlikte kullanılır. 
+-- Kullanımı ve mantığı IN ' e benzer. 
+-- Olumsuzu da NOT EXISTs dir.
+--Alt sorgudan getirilen değer içerisinde bir değerin olması yada olmaması durumlerını inceler ve bu sonuca göre işlem yapar.
+
+CREATE TABLE mart_satislar 
+(
+urun_id number(10),
+musteri_isim varchar2(50), 
+urun_isim varchar2(50)
+);
+INSERT INTO mart_satislar VALUES (10, 'Mark', 'Honda');
+INSERT INTO mart_satislar  VALUES (10, 'Mark', 'Honda');
+INSERT INTO mart_satislar VALUES (20, 'John', 'Toyota');
+INSERT INTO mart_satislar VALUES (30, 'Amy', 'Ford');
+INSERT INTO mart_satislar VALUES (20, 'Mark', 'Toyota');
+INSERT INTO mart_satislar VALUES (10, 'Adem', 'Honda');
+INSERT INTO mart_satislar VALUES (40, 'John', 'Hyundai');
+INSERT INTO mart_satislar VALUES (20, 'Eddie', 'Toyota');
+
+CREATE TABLE nisan_satislar 
+(
+urun_id number(10),
+musteri_isim varchar2(50), 
+urun_isim varchar2(50)
+);
+
+INSERT INTO nisan_satislar VALUES (10, 'Hasan', 'Honda');
+INSERT INTO nisan_satislar  VALUES (10, 'Kemal', 'Honda');
+INSERT INTO nisan_satislar VALUES (20, 'Ayse', 'Toyota');
+INSERT INTO nisan_satislar VALUES (50, 'Yasar', 'Volvo');
+INSERT INTO nisan_satislar VALUES (20, 'Mine', 'Toyota');
+
+SELECT*
+FROM mart_satislar;
+
+SELECT*
+FROM nisan_satislar;
+
+-- Her iki ayda da aynı id ile satılan ürünlerin ürün_id'lerini ve mart ayında alanların isimlerini getiren query yazalım.
+
+SELECT musteri_isim
+FROM nisan_satislar
+WHERE EXISTS (SELECT urun_id
+              FROM mart_satislar
+              WHERE mart_satislar.urun_id = nisan_satislar.urun_id
+             );
+
+
+--Her iki ayda da satilan urun_isimleri ayni urunlerin urun_isim’ini ve 
+--urunleri nisan ayinda alanlarin isimlerini getiren bir query yaziniz.
+
+-- eğer ürün her iki ayda da alındıysa ürünün ismini ve ürünü nisan ayında alan kişilerin isimlerini bulan bir sorgu yazınız.
+
+SELECT urun_isim, musteri_isim
+FROM nisan_satislar
+WHERE EXISTS (SELECT urun_isim
+             FROM mart_satislar
+             WHERE mart_satislar.urun_isim = nisan_satislar.urun_isim
+             );
+
+-- Nisan ayında alınıp da mart ayında alınmamış olan urun_isim ve musteri_ismi
+
+SELECT urun_isim, musteri_isim
+FROM nisan_satislar
+WHERE NOT EXISTS (SELECT urun_isim
+                 FROM mart_satislar
+                 WHERE mart_satislar.urun_isim = nisan_satislar.urun_isim
+                 );
+
+
+-- Mart ayında alınıp nisan ayında alınmayan urunlerin urun_id sini ve musteri isimlerini bulalım
+
+SELECT musteri_isim, urun_id
+FROM mart_satislar
+WHERE NOT EXISTS (SELECT urun_isim
+                FROM nisan_satislar
+                WHERE mart_satislar.urun_isim = nisan_satislar.urun_isim
+ );
+
+
+
+
+
+
+
+
+
+
+

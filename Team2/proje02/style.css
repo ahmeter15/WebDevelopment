@@ -1,0 +1,139 @@
+body {
+  background-color: #160C6E !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+
+
+
+.halka1, .halka2, .gear {
+  position: absolute;
+  margin-top: 3rem;
+  z-index: -1;
+}
+
+.halka1 {
+  background-color: #3F21D0;
+  background-position: center;
+  border-radius: 50%;
+  height: 800px;
+  width: 800px;
+  position: absolute;
+}
+
+.block {
+  display: block;
+}
+
+.halka2 {
+  background: linear-gradient(321.25deg, #DF387C -33.39%, #FF602C 103.69%);
+  background-position: center;
+  border-radius: 50%;
+  height: 450px;
+  width: 450px;
+  position: absolute;
+}
+
+.gear {
+  background-image: url(proje/fotograf.png);
+  background-position: center;
+  background-size: cover;
+  height: 500px;
+  width: 500px;
+}
+
+.logo {
+  position: absolute;
+  margin-top: 20px;
+}
+
+.logo img {
+  width: 70px;
+}
+
+.search {
+  margin-top: 30px;
+}
+
+.fa-search {
+  font-size: 1.4rem;
+}
+
+.header {
+
+  box-sizing: border-box;
+
+}
+
+.container {
+  width: 100%;
+}
+
+.orta {
+  margin-top: 7rem;
+}
+
+.sol-baslik, .sag-baslik {}
+
+.metin {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.sag {
+  float: right;
+  text-align: right;
+  width: 70%;
+  padding-right: 1rem;
+}
+
+.sol {
+  float: left;
+  text-align: left;
+  width: 30%;
+  padding-left: 1rem;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sol-baslik {
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.sol li {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.btn {
+  background: linear-gradient(321.25deg, #DF387C -33.39%, #FF602C 103.69%);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 17px 25px !important;
+  border: none !important;
+}
+
+.sag-baslik {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 6.3rem;
+}
+
+.footer {
+  margin-top: 6rem;
+  display: block;
+}
+
+.social {
+  font-size: 18px;
+  color: white;
+  margin-right: 10px;
+}

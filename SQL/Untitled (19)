@@ -1,0 +1,354 @@
+-- UNION  
+CREATE TABLE personel 
+(
+id number(9), 
+isim varchar2(50), 
+sehir varchar2(50), 
+maas number(20), 
+sirket varchar2(20),
+CONSTRAINT personel_pk PRIMARY KEY (id)
+);
+INSERT INTO personel VALUES(123456789, 'Ali Yilmaz', 'Istanbul', 5500, 'Honda');
+INSERT INTO personel VALUES(234567890, 'Veli Sahin', 'Istanbul', 4500, 'Toyota');
+INSERT INTO personel VALUES(345678901, 'Mehmet Ozturk', 'Ankara', 3500, 'Honda'); 
+INSERT INTO personel VALUES(456789012, 'Mehmet Ozturk', 'Izmir', 6000, 'Ford');
+INSERT INTO personel VALUES(567890123, 'Mehmet Ozturk', 'Ankara', 7000, 'Tofas');
+INSERT INTO personel VALUES(456715012, 'Veli Sahin', 'Ankara', 4500, 'Ford');
+INSERT INTO personel VALUES(123456710, 'Hatice Sahin', 'Bursa', 4500, 'Honda');
+
+CREATE TABLE personel_bilgi
+(
+id number(9),
+tel char(10) UNIQUE ,
+cocuk_sayisi number(2),
+CONSTRAINT personel_bilgi_fk FOREIGN KEY (id) REFERENCES personel(id)
+);
+
+INSERT INTO personel_bilgi VALUES(123456789, '5302345678' , 5);
+INSERT INTO personel_bilgi VALUES(234567890, '5422345678', 4);
+INSERT INTO personel_bilgi VALUES(345678901, '5354561245', 3); 
+INSERT INTO personel_bilgi VALUES(456789012, '5411452659', 3);
+INSERT INTO personel_bilgi VALUES(567890123, '5551253698', 2);
+INSERT INTO personel_bilgi VALUES(123456710, '5537488585', 1);
+
+SELECT *
+FROM personel ;
+
+-- SET operations 
+-- UNION iki tablonun birleşimi bulmaya yarıyordu.
+--id’si 123456789 olan personelin  Personel tablosundan sehir ve maasini,
+--personel_bilgi tablosundan da tel ve cocuk sayisini yazdirin  
+
+
+SELECT sehir AS sehir_tel, maas AS maas_cocuk
+FROM personel
+WHERE id = 123456789
+
+UNION 
+
+SELECT tel, cocuk_sayisi
+FROM personel_bilgi
+WHERE id = 123456789;
+
+-- Alt alta gelen field ların data type larının aynı olması gerekir.
+
+-- UNION VE UNION ALL arasındaki fark 
+-- Union aynı record u terkar tekrar yazmaz. Yani duplication 'a izin vermez.
+-- UNION ALL tüm recordları alır, tekrar etse bile.
+
+--Tabloda personel maasi 4000’den cok olan tum sehirleri ve maaslari yazdirin
+--Tabloda personel maasi 5000’den az olan tum isimleri ve maaslari yazdirin
+
+-- UNION ve UNION ALL ile yapalım. 
+
+SELECT sehir AS sehir_isim, maas
+FROM personel
+WHERE maas >4000
+UNION ALL
+SELECT isim, maas
+FROM personel
+WHERE maas <5000 ;
+
+-- INTERSECT 
+-- Kesişim 
+-- İki tablodada ortak olanlar.
+-- COMMON ONES -- ortak olan elemanlar 
+
+--Personel tablosundan Istanbul veya Ankara’da calisanlarin id’lerini yazdir
+--) Personel_bilgi tablosundan 2 veya 3 cocugu olanlarin id lerini yazdirin
+SELECT id
+FROM personel
+WHERE sehir IN ('Istanbul', 'Ankara')
+INTERSECT
+SELECT id
+FROM personel_bilgi
+WHERE cocuk_sayisi IN (2,3);
+
+--Maasi 4800’den az olanlar veya 5000’den cok olanlarin id’lerini listeleyin
+--Personel_bilgi tablosundan 2 veya 3 cocugu olanlarin id lerini yazdirin
+
+SELECT id
+FROM personel
+WHERE maas NOT BETWEEN 4800 AND 5000
+INTERSECT
+SELECT id
+FROM personel_bilgi
+WHERE cocuk_sayisi IN (2,3);
+
+--Honda,Ford ve Tofas’ta calisan ortak isimde personel varsa listeleyin
+
+SELECT isim
+FROM personel
+WHERE sirket = 'Honda'
+INTERSECT 
+SELECT isim
+FROM personel
+WHERE sirket = 'Ford'
+INTERSECT
+SELECT isim
+FROM personel
+WHERE sirket = 'Tofas';
+
+-- MINUS 
+-- Fark  A ve B tablosu arasındaki farktır.
+-- Personel tablosunda olup personel bilgi tablosunda olmayan bir değeri bulmak için kullanılabilir. 
+
+--  5000’den az maas alip Honda’da calismayanlari yazdirin 
+
+SELECT isim ,sirket 
+FROM personel
+WHERE maas < 5000
+MINUS 
+SELECT isim,sirket
+FROM personel
+WHERE sirket = 'Honda' ;
+
+
+-- Ismi Mehmet Ozturk olup Istanbul’da calismayanlarin isimlerini ve sehirlerini  listeleyin
+
+SELECT isim ,sehir
+FROM personel
+WHERE isim = 'Mehmet Ozturk'
+MINUS
+SELECT isim, sehir
+FROM personel
+WHERE sehir = 'Istanbul';
+
+-- JOIN ler iki tablodaki dataları birleştirmek için kullanılır.
+
+-- Şu ana kadar kullanılan set operators ün aksine join ler tabloları birleştirir.
+
+-- 5 çeşit join vardır.
+-- INNER JOIN -- ORTAK OLAN DATALARI BULUR (Intersect gibi )
+-- LEFT JOIN -- ilk tabloda olan tüm recordları gösterir.
+-- RIGHT JOIN -- sağ tarafta (ikinci tablo) daki tüm recordları gösterir.
+-- FULL JOIN-- Her iki tabloyu da gösterir.
+-- SELF JOIN de bir tablonun kendi içinde Join edilmesi (çoğaltılmasıdır)
+
+CREATE TABLE sirketler 
+(
+sirket_id number(9), 
+sirket_isim varchar2(20)
+);
+
+INSERT INTO sirketler VALUES(100, 'Toyota');
+INSERT INTO sirketler VALUES(101, 'Honda');
+INSERT INTO sirketler VALUES(102, 'Ford');
+INSERT INTO sirketler VALUES(103, 'Hyundai');
+
+CREATE TABLE siparisler
+(
+siparis_id number(9),
+sirket_id number(9), 
+siparis_tarihi date
+);
+
+INSERT INTO siparisler VALUES(11, 101, '17-Apr-2020');
+INSERT INTO siparisler VALUES(22, 102, '18-Apr-2020');
+INSERT INTO siparisler VALUES(33, 103, '19-Apr-2020');
+INSERT INTO siparisler VALUES(44, 104, '20-Apr-2020');
+INSERT INTO siparisler VALUES(55, 105, '21-Apr-2020');
+
+-- INNER JOIN 
+
+SELECT *
+FROM sirketler ;
+
+SELECT *
+FROM siparisler ;
+--Iki Tabloda sirket_id’si ayni olanlarin sirket_ismi, siparis_id ve siparis_tarihleri ile yeni bir tablo olusturun
+-- İki tabloda ortak olanları dönmemi istiyor 
+-- Öyleyse Iner Join kullanmak gerekir
+
+SELECT sirketler.sirket_isim, siparisler.siparis_id, siparisler.siparis_tarihi 
+FROM sirketler INNER JOIN siparisler
+ON sirketler.sirket_id = siparisler.sirket_id ;
+
+-- Select'ten sonra tabloda görmek istediğimiz sütunları yazarken Tablo_adi.field_adi seklinde yazın.
+-- From dan sonra tablo ismi yazarken 1. Tablo ismi + INNER JOIN + 2. Tablo ismi şeklinde yazın
+-- Join in hangi kurala göre yapacağımızı belirtmek için ON +  yukarıdaki ifadeyi kullanın. 
+
+LEFT JOIN 
+
+-- Left join de ilk tablodaki tüm recordlar gösterilir
+-- İlk tablodaki datalara 2. tablodan gelen ek datalar varsa bu ek datalar ortak datalar için gösterilir.
+-- Ancak ortak olmayan datalar için olan kısım boş kalır
+-- İLk yazdığımız tablonun tamamı alınacağı için sıralama önemli
+
+SELECT sirketler.sirket_isim, siparisler.siparis_tarihi, siparisler.siparis_id
+FROM sirketler LEFT JOIN siparisler
+ON sirketler.sirket_id = siparisler.sirket_id;
+
+-- RIGHT JOIN 
+-- Right Join de ikinci tablodaki tüm recordlar gösterilir
+-- İkinci tabloda datalara 1. tablodan gelen ek datalar varsa bu ek datalar ortak olan fiedl lar için gösterilir.
+-- Ortak olmayan datalar içn o kısım boş kalacak.
+
+SELECT sirketler.sirket_isim, siparisler.siparis_tarihi, siparisler.siparis_id
+FROM sirketler RIGHT JOIN siparisler
+ON sirketler.sirket_id = siparisler.sirket_id;
+
+-- FULL JOIN 
+-- İki tabloda var olan tüm recordlarıları gösterir.
+-- Bir tabloda olup diğer tabloda olmayanlar için - koyacak.
+
+SELECT *
+FROM sirketler FULL JOIN siparisler
+ON sirketler.sirket_id = siparisler.sirket_id;
+
+-- SELF JOIN 
+
+DROP TABLE personel;
+
+CREATE TABLE calisanlar
+ (
+id number(2), 
+isim varchar2(20), 
+title varchar2(60), 
+yonetici_id number(2)
+);
+
+INSERT INTO calisanlar VALUES(1, 'Ali Can', 'SDET', 2);
+INSERT INTO calisanlar VALUES(2, 'Veli Cem', 'QA', 3);
+INSERT INTO calisanlar VALUES(3, 'Ayse Gul', 'QA Lead', 4);
+INSERT INTO calisanlar VALUES(4, 'Fatma Can', 'CEO', 5);
+
+SELECT *
+FROM calisanlar; 
+
+-- Çalışan ismi ve yöneticisinin olduğu bir tablo görmek için Self Join 
+-- Bir tablodan iki tablo oluşturmak gibi 
+
+-- Her çalışanın yanına yönetici isminin olduğu bir tablo oluşturalım
+
+--Bir tablo ile çalıştığım için tabloyu kopyalıyormuşum gibi hareket edicem c1 ve c2 isminde iki tablo varmış gibi düşüneceğim.
+
+SELECT c1.isim AS calisan_ismi, c2.isim AS yonetici_ismi
+FROM calisanlar c1 INNER JOIN calisanlar c2
+ON c1.yonetici_id = c2.id;
+
+-- PIVOT 
+
+CREATE TABLE musteri_urun 
+(
+urun_id number(10),
+musteri_isim varchar2(50), 
+urun_isim varchar2(50)
+);
+
+INSERT INTO musteri_urun VALUES (10, 'Ali', 'Portakal');
+INSERT INTO musteri_urun VALUES (10, 'Ali', 'Portakal');
+INSERT INTO musteri_urun VALUES (20, 'Veli', 'Elma');
+INSERT INTO musteri_urun VALUES (30, 'Ayse', 'Armut');
+INSERT INTO musteri_urun VALUES (20, 'Ali', 'Elma');
+INSERT INTO musteri_urun VALUES (10, 'Adem', 'Portakal');
+INSERT INTO musteri_urun VALUES (40, 'Veli', 'Kaysi');
+INSERT INTO musteri_urun VALUES (20, 'Elif', 'Elma');
+
+SELECT *
+FROM musteri_urun ;
+
+SELECT *
+FROM (SELECT urun_isim, musteri_isim 
+        FROM musteri_urun )
+PIVOT (COUNT (urun_isim) FOR urun_isim IN ('Portakal', 'Elma', 'Kaysi','Armut'));
+
+SELECT *
+FROM (SELECT musteri_isim, urun_isim
+      FROM musteri_urun)
+PIVOT (COUNT (musteri_isim) FOR musteri_isim IN ('Ali', 'Veli', 'Ayse', 'Adem','Elif'));
+
+
+-- ALTER TABLE 
+-- Alter komutlarıyla tablolarda add, modify, drop veya delete yapılabilir.
+-- Var olan bir tabloya yeni bir field eklemek, data type ını değiştirmek, bir field 'ı silmek için drop kullanılır.
+
+SELECT *
+FROM personel ;
+
+DROP TABLE personel_bilgi ;
+DROP TABLE personel ;
+
+CREATE TABLE personel 
+(
+id number(9), 
+isim varchar2(50), 
+sehir varchar2(50), 
+maas number(20), 
+sirket varchar2(20),
+CONSTRAINT personel_pk PRIMARY KEY (id)
+);
+
+INSERT INTO personel VALUES(123456789, 'Ali Yilmaz', 'Istanbul', 5500, 'Honda');
+INSERT INTO personel VALUES(234567890, 'Veli Sahin', 'Istanbul', 4500, 'Toyota');
+INSERT INTO personel VALUES(345678901, 'Mehmet Ozturk', 'Ankara', 3500, 'Honda'); 
+INSERT INTO personel VALUES(456789012, 'Mehmet Ozturk', 'Izmir', 6000, 'Ford');
+INSERT INTO personel VALUES(567890123, 'Mehmet Ozturk', 'Ankara', 7000, 'Tofas');
+INSERT INTO personel VALUES(123456710, 'Hatice Sahin', 'Bursa', 4500, 'Honda');
+
+-- ADD ile tabloya DEFAULT bir değişken atama
+
+ALTER TABLE personel
+ADD ulke_isim varchar2(20) DEFAULT 'Turkiye';
+
+
+SELECT *
+FROM personel ;
+
+-- Default da bir Constraint 'tir. 
+
+-- Tabloya birden fazla field eklemek için
+
+ALTER TABLE personel
+ADD (cinsiyet varchar2 (10), yas number (3));
+
+-- Tablodan belirli bir field'ı silme
+ALTER TABLE personel
+DROP COLUMN yas ;
+
+-- Field ismini değiştirmek için 
+
+ALTER TABLE personel
+RENAME COLUMN ulke_isim TO ulke_adi;
+
+-- Tablonun ismini değiştirmek için 
+
+ALTER TABLE personel
+RENAME TO isciler ;
+
+-- Sütunların özelliklerini değiştirmek için 
+ALTER TABLE isciler
+MODIFY ulke_adi varchar2 (30 ) NOT NULL ;
+
+
+-- Tabloya yazdırdığımız dataların hepsini büyük harf yapma
+
+SELECT UPPER (isim)
+FROM isciler ;
+
+SELECT LOWER (isim)
+FROM isciler ;
+
+SELECT INITCAP (isim)
+FROM isciler ;
+

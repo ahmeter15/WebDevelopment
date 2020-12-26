@@ -1,0 +1,69 @@
+24 Ekim 2020 - Cumartesi
+
+Son Ders Tekrar:
+----------------
+
+***** CSS'de alt tarafa yazılan kod, üstteki kodun hükmünü sona erdirir.
+.link{
+	background-color: blue;		/// arkaplan rengi mavi
+	color: red;   				/// yazı rengi kırmızı
+}
+
+.renkdegisimi{
+	background-color: yellow;
+	font-size: 2.5rem;
+}
+
+<div class="link renkdegisimi">
+	background-color : yellow;
+	color: red;
+	font-size: 2.5rem;
+
+
+display: inline        /// elementi satır içine alıyor, width-margin vs 						   kullanılaMIYOR.
+display: block         /// element TÜM SATIRI TEK BAŞINA KAPLIYOR, 								   width-margin vs kullanılaBİLİYOR.
+display: inline-block  /// hem satır içi hem de block özelliği taşıyor.
+						   width-margin vs kullanılaBİLİYOR.	
+float: left
+float: right
+float: center
+display: flex *
+display: none *
+
+--------------------------------DERS NOTLARI-----------------------------
+
+* block element tüm satırı kaplar..
+* 3 DIV elementini yan yana almak istiyorsak, inline ya da inline-block yapmamız gerekiyor.
+* inline elementler, height ve width gibi özelliklerden etkilenmezler.(istisnalar hariç.)
+
+* visibility: hidden    ---> kullanıldığında, element bulunduğu konumu yine işgal eder fakat kullanıcıya görünMEZ...
+
+* display: none         ---> kullanıldığında, element bulunduğu konumu işgal etmez ve kullanıcıya da görünMEZ...
+
+***** Eğer block elementleri yanyana almak istiyorsak, ÖNCELİKLE O ELEMENTE GENİŞLİK VERMEMİZ VE SATIRDA YER AÇMAMIZ. FLOAT LEFT ÖZELLİĞİ SAYESİNDE ELEMENTLERİ ARD ARDA SIRALAYABİLECEĞİZ..
+
+***** Eğer display: block özelliği taşıyan bir elemente FLOAT:LEFT dersek, tüm alanı kaplamayı bırakır !!!!! Ancak eğer width değeri vermezsek, içindeki elementlerin, yazıların durumuna göre tüm alanı KAPLAYABİLİR..
+
+***** Eğer display: block özelliği taşıyan elemente FLOAT:LEFT dersek ve bir de kendisine width değeri eklersek, o zaman hem sol tarafta kalır hem de verdiğimiz genişlik değeri kadar bir genişliğe sahip olur.
+
+---------------------------------------------------------------------------
+
+Websayfamızda BLOCK element olan DIVleri yanyana almak istiyorsak(örneğin: 3 tane kutuyu yanyana ve 33% genişliğinde) yapacağımız işlem şu olacak.
+
+DISPLAY : BLOCK özelliğini DEĞİŞTİRMEMİZE GEREK YOK.
+FLOAT: LEFT vereceğiz.
+WIDTH:33% vereceğiz.
+
+ve 3 kutu da yanyana gelecek.
+
+---------------------------------------------------------------------------------------
+
+box-sizing: border-box;  ---> eğer bunu kullanırsanız, padding değeri kutunun genişliğine ilave olarak eklenmez ve kutunun genişliği sabit kalır.
+
+//////////// ELEMENTLERİ DİKEY VE YATAY OLARAK ORTAYA ALMA ////////////
+  display: flex;
+  align-items: center;		 ---> dikey olarak ortalar
+  justify-content: center;   ---> yatay olarak ortalar
+//////////// ELEMENTLERİ DİKEY VE YATAY OLARAK ORTAYA ALMA ////////////
+
+ÖNEMLİ BİR NOT : Bir elementi bulunduğu elementin içinde yatay olarak ortalamak istiyorsak "margin: 0 auto;" kullanabiliriz.

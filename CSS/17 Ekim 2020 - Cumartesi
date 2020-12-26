@@ -1,0 +1,73 @@
+17 Ekim 2020 - Cumartesi
+
+Son Ders Tekrar:
+----------------
+
+style attribute  : herhangi bir elemente stil kazandırabiliyoruz.
+<style> tagı     : css kodlarımızı buraya yazabiliyorduk.
+background-color : arkaplan rengini belirler.
+color            : yazının rengini belirler.
+font-size        : yazının boyutunu belirler.
+
+elementinKendiStyle > elementinBababasininStyle > elementinDedesininStyle
+
+------------------------------DERS NOTLARI---------------------------------
+
+***** Herhangi bir elementi boyutlandırmak için width="" attribute'u ya da height="" attribute'u kullanMAYACAĞIZ ! Bu işlemi de yine CSS kullanarak yapacağız.
+
+:hover : bir elementin mouse üzerine gelince oluşacak stilini belirler.
+width  : elemente genişlik değeri belirler.
+height : elemente yükseklik değeri belirler.
+margin : bir webelemente dışarıdan cevreden boşluk bırakır (em, rem, px, %)
+	margin-left: 30px;
+	margin-right: 50px;
+	margin-top: 20px;
+	margin-bottom: 40px;
+
+	margin: ust  sag  alt  sol;
+	margin: 20px 50px 40px 30px;
+	margin: 50px 30px; (ust-alt : 50px    sag-sol:30px)
+
+	margin: 5% 15%; (ust-alt : 15%  sag-sol: 15%)
+	margin: 50px; (ust-sag-alt-sol : 50px)
+
+padding  : bir webelementin içinde çevreden boşluk bırakır.
+	padding-left:30px;
+	padding-right:30px;
+	padding-top:50px;
+	padding-bottom:100px;
+
+	padding: ust  sag  alt   sol;
+	padding: 50px 30px 100px 30px;
+	padding: 30px 40px; (ust-alt 30px  sag-sol 40px)
+
+	padding: 10% 5%; (ust-alt : 10%    sag-sol : 5%)
+	padding: 40px;  (ust-sag-alt-sol : 40px)
+
+
+SELECTOR KAVRAMI : sayfadaki belirli elementleri biçimlendirmek istersek öncelikle o elementi BULMAMIZ, SEÇMEMİZ(selector) gerekir.
+	2 tip selector : class , id
+
+ID    : TC'si 12345678910 olan kişiye 1000 lira yardımda bulunulsun.
+CLASS : İsmi  HAMZA       olan kişiye 1000 lira yardımda bulunulsun.
+
+Belirli bir ID sadece bir element için kullanılabilir. Yani ID değeri sayfadaki her element için benzersiz olmalıdır.
+
+Fakat CLASS değeri her element için aynı olabilir, farklı olabilir. Her iki durumda da kullanılabilir.
+
+***** <h1 id="baslik" class="title">Merhaba</h1>
+      <h2 id="yeni-baslik" class="title">Selamlar</h2>
+
+.classismi şeklinde kullanılabilen class değeri kullanıldığı elementi şekillendirme, renklendirmeye yani kısa stil vermeye yazıyor. Örnek;
+
+	<style>
+		.arkaplan-kirmizi{
+			background-color: red;
+		}
+		.rengi-mavi{
+			color: blue;
+		}
+	</style>    
+
+	<h1 class="arkaplan-kirmizi">Arkaplanım Kırmızı Oldu</h1>
+	<p class="rengi-mavi">Bu yazının rengi mavi</p>

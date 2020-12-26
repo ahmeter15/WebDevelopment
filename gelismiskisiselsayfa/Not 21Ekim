@@ -1,0 +1,12 @@
+21 Ekim 2020 - Çarşamba
+--------------------------------DERS NOTLARI-------------------------------
+* sayfada yer alan "icon"un dosya uzantısı ".ico" olabilir.
+	- jpg, png, jpeg, gif uzantıları da çalışır.
+* border : CSS dosyasına eklediğimiz bu özellik yardımıyla, websayfasındaki herhangi bir elementin dış yüzeyine çizgi ekleyebiliyoruz.
+	border: solid;       		(solid, dashed)
+	border: 3px solid;   		(solid, dashed)
+	border: 3px solid #FF0000;  (solid, dashed)
+* border-radius : Bir elementin köşelerini yuvarlamak için bu özelliği kullanırız. 
+	***** border-radius kullanmak için "border" kullanmak zorunda DEĞİLİZ!
+	border-radius: 50%;    - elementimiz yuvarlak hale gelir.
+	border-radius: 40px 40px 0 0; - SolÜst SağÜst SağAlt SolAlt
